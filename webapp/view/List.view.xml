@@ -1,0 +1,142 @@
+<mvc:View
+    xmlns:core="sap.ui.core"
+    xmlns="sap.m"
+    xmlns:f="sap.f"
+    xmlns:mvc="sap.ui.core.mvc"
+    controllerName="knplsalesofficersportal.controller.List"
+    displayBlock="true"
+    height="100%"
+>
+    <f:DynamicPage
+        id="dynamicListPage"
+        toggleHeaderOnTitleClick="false"
+    >
+        <!-- DynamicPage Title -->
+        <f:title>
+            <f:DynamicPageTitle>
+                <f:heading>
+                    <Title
+                        text="Employees ({= ${USERS_DATA>/user/$count} ? ${USERS_DATA>/user/$count} : 0})"
+                    />
+                </f:heading>
+            </f:DynamicPageTitle>
+        </f:title>
+
+        <!-- DynamicPage Content -->
+        <f:content>
+            <Table
+                id="usersTable"
+                mode="Delete"
+                delete="onDeleteUser"
+                itemPress="onListItemPress"
+                inset="false"
+                class="sapFDynamicPageAlignContent"
+                width="auto"
+                growing="true"
+                growingThreshold="20"
+                alternateRowColors="true"
+                items="{
+                    path: 'USERS_DATA>/user',
+                    parameters: {expand: 'ROLE'},
+                    sorter: {path: 'ID'}
+                }"
+                sticky="HeaderToolbar,ColumnHeaders"
+            >
+                <!-- Toolbar -->
+                <headerToolbar>
+                    <OverflowToolbar>
+                        <OverflowToolbarMenuButton
+                            tooltip="Add"
+                            type="Transparent"
+                            text="Add"
+                            buttonMode="Split"
+                            icon="sap-icon://add-employee"
+                            defaultAction="onAddSelectChange"
+                        >
+                            <menu>
+                                <Menu itemSelected="onAddSelectChange">
+                                    <MenuItem
+                                        key="RSM"
+                                        text="Create RSM"
+                                        icon="sap-icon://manager"
+                                    />
+                                    <MenuItem
+                                        key="ASM"
+                                        text="Create ASM"
+                                        icon="sap-icon://people-connected"
+                                    />
+                                    <MenuItem
+                                        key="TSI"
+                                        text="Create TSI"
+                                        icon="sap-icon://add-employee"
+                                    />
+                                </Menu>
+                            </menu>
+                        </OverflowToolbarMenuButton>
+                        <ToolbarSpacer />
+                        <SearchField
+                            search="onSearch"
+                            liveChange="onLiveSearch"
+                            placeholder="Search by Name or Email ID"
+                            width="20.5rem"
+                        />
+
+                        <!-- <MultiComboBox
+                            id="roleFilter"
+                            placeholder="Filter by Role"
+                            selectionChange="onRoleFilterChange"
+                            width="8.5rem"
+                        >
+                            <core:Item
+                                key="1"
+                                text="RSM"
+                            />
+                            <core:Item
+                                key="2"
+                                text="ASM"
+                            />
+                            <core:Item
+                                key="3"
+                                text="TSI"
+                            />
+                        </MultiComboBox> -->
+                        <OverflowToolbarButton
+                            icon="sap-icon://sort"
+                            type="Transparent"
+                            press="onSort"
+                        />
+                    </OverflowToolbar>
+                </headerToolbar>
+
+                <!-- Columns -->
+                <columns>
+                    <Column>
+                        <Text text="ID" />
+                    </Column>
+                    <Column>
+                        <Text text="Name" />
+                    </Column>
+                    <Column>
+                        <Text text="Role" />
+                    </Column>
+                </columns>
+
+                <!-- Items -->
+                <items>
+                    <ColumnListItem type="Navigation">
+                        <cells>
+                            <ObjectIdentifier text="{USERS_DATA>ID}" />
+                            <ObjectIdentifier
+                                title="{USERS_DATA>FIRST_NAME} {USERS_DATA>LAST_NAME}"
+                                text="{USERS_DATA>EMAIL}"
+                            />
+                            <ObjectIdentifier
+                                text="{path: 'USERS_DATA>ROLE/0/ROLE_ID', formatter: '._formatter.formatRole'}"
+                            />
+                        </cells>
+                    </ColumnListItem>
+                </items>
+            </Table>
+        </f:content>
+    </f:DynamicPage>
+</mvc:View>

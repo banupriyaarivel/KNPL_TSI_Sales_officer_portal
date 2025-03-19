@@ -1,0 +1,193 @@
+<core:FragmentDefinition
+    xmlns="sap.m"
+    xmlns:f="sap.ui.layout.form"
+    xmlns:core="sap.ui.core"
+    xmlns:mdc="sap.ui.mdc"
+    xmlns:u="sap.ui.unified"
+>
+    <Dialog
+        id="editDialog"
+        title="Edit Employee"
+        class="sapUiPopupWithPadding"
+    >
+        <HBox class="sapUiSmallMargin">
+            <!-- Personal Details Section -->
+            <f:SimpleForm
+                id="personalDetailsEditForm"
+                title="Personal Details"
+                editable="true"
+                layout="ResponsiveGridLayout"
+            >
+                <f:content>
+                    <!-- <Label text="ID" />
+                    <Input
+                        value="{existData>/ID}"
+                        editable="false"
+                    /> -->
+                    <Label
+                        text="First Name"
+                        required="true"
+                    />
+                    <Input
+                        value="{existData>/FIRST_NAME}"
+                        liveChange=".onCapitalizeFirstLetter"
+                    />
+                    <Label
+                        text="Last Name"
+                        required="true"
+                    />
+                    <Input
+                        value="{existData>/LAST_NAME}"
+                        liveChange=".onCapitalizeFirstLetter"
+                    />
+                    <Label
+                        text="Email"
+                        required="true"
+                    />
+                    <Input
+                        type="Email"
+                        value="{existData>/EMAIL}"
+                        editable="false"
+                    />
+                    <Label
+                        text="Mobile Number"
+                    />
+                    <Input
+                        type="Tel"
+                        value="{existData>/MOBILE}"
+                        maxLength="10"
+                        liveChange="true"
+                    />
+                    <Label text="Status" />
+                    <HBox class="sapUiSmallMargin">
+                        <!-- Active Status -->
+                        <VBox class="sapUiTinyMarginEnd">
+                            <Label text="Active" />
+                            <RadioButtonGroup
+                                id="Active"
+                                selectedIndex="{= ${existData>/IS_ACTIVATED} === 1 ? 0 : 1}"
+                                select=".onRadioButtonChange"
+                            >
+                                <RadioButton text="Yes" />
+                                <RadioButton text="No" />
+                            </RadioButtonGroup>
+                        </VBox>
+
+                        <!-- Archive Status -->
+                        <VBox>
+                            <Label text="Archive" />
+                            <RadioButtonGroup
+                                id="Archive"
+                                selectedIndex="{= ${existData>/IS_ARCHIVED} === 1 ? 0 : 1}"
+                                select=".onRadioButtonChange"
+                            >
+                                <RadioButton text="Yes" />
+                                <RadioButton text="No" />
+                            </RadioButtonGroup>
+
+                         
+                        </VBox>
+                        
+                    </HBox>
+                       <!-- Image Upload Section -->
+                        <!-- <Label text="Profile Image" />
+                        <u:FileUploader
+                            id="imageUploader"
+                            uploadUrl="upload/url"
+                            change="onImageUpload"
+                            buttonText="Choose Image"
+                        />
+                        <Image
+                            id="uploadedImage"
+                            width="100px"
+                            height="100px"
+                            src="{existData>/PROFILE_IMAGE}"
+                            visible="true"
+                        /> -->
+                </f:content>
+            </f:SimpleForm>
+
+            <!-- Employee Details Section -->
+            <f:SimpleForm
+                id="employeeDetailsEditForm"
+                title="Employee Details"
+                editable="true"
+                layout="ResponsiveGridLayout"
+            >
+                <f:content>
+                    <Label text="Employee Code" />
+                    <Input
+                        value="{existData>/EMPLOYEE_CODE}"
+                        liveChange="true"
+                    />
+                    <Label text="Designation" />
+                    <Input
+                        value="{existData>/DESIGNATION}"
+                        liveChange="true"
+                    />
+                    <Label text="Manager" />
+                    <Input
+                        value="{existData>/MANAGER}"
+                        liveChange="true"
+                    />
+                    <Label text="Zone" />
+                    <Input
+                        value="{existData>/ZONE}"
+                        liveChange="true"
+                    />
+                    <Label text="Division Identifier" />
+                    <Input
+                        value="{existData>/DIVISION_IDENTIFIER}"
+                        liveChange="true"
+                    />
+                    <Label
+                        text="Role"
+                        required="true"
+                    />
+                    <Select
+                        selectedKey="{existData>/ROLE/0/ROLE_ID}"
+                        editable="true"
+                    >
+                        <items>
+                            <core:Item
+                                key="1"
+                                text="RSM"
+                            />
+                            <core:Item
+                                key="2"
+                                text="ASM"
+                            />
+                            <core:Item
+                                key="3"
+                                text="TSI"
+                            />
+                        </items>
+                    </Select>
+                    <Label
+                        text="Sales Group ID"
+                    />
+                    <Input
+                        type="Tel"
+                        value="{existData>/SALES_GROUPS/0/SALES_GROUP}"
+                        maxLength="3"
+                        liveChange="true"
+                    />
+                </f:content>
+            </f:SimpleForm>
+        </HBox>
+
+        <!-- Dialog buttons -->
+        <beginButton>
+            <Button
+                text="Submit"
+                press="onSubmit"
+            />
+        </beginButton>
+        <endButton>
+            <Button
+                text="Cancel"
+                press="onCancel"
+            />
+        </endButton>
+    </Dialog>
+</core:FragmentDefinition>

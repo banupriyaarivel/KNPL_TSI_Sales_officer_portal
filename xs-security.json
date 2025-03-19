@@ -1,0 +1,34 @@
+{
+  "xsappname": "knplsalesofficersportal",
+  "tenant-mode": "dedicated",
+  "description": "Security profile of called application",
+  "scopes": [
+    {
+      "name": "$XSAPPNAME.Admin",
+      "description": "Admin role for managing the sales officer's portal"
+    }
+  ],
+  "role-templates": [
+    {
+      "name": "Admintemp",
+      "description": "Administrator role template",
+      "scope-references": [
+        "$XSAPPNAME.Admin"
+      ]
+    }
+  ],
+  "role-collections": [
+    {
+      "name": "AdminRoleCollection",
+      "description": "Role collection for administrators",
+      "role-template-references": [
+        "$XSAPPNAME.Admintemp"
+      ]
+    }
+  ]
+}
+
+
+
+
+

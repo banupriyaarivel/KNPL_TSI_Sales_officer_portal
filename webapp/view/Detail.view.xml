@@ -1,0 +1,689 @@
+<mvc:View
+    displayBlock="true"
+    controllerName="knplsalesofficersportal.controller.Detail"
+    height="100%"
+    xmlns="sap.uxap"
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns:m="sap.m"
+    xmlns:f="sap.f"
+    xmlns:form="sap.ui.layout.form"
+    xmlns:ui="sap.ui.table"
+    xmlns:uirm="sap.ui.table.rowmodes"
+    xmlns:layout="sap.ui.layout"
+>
+    <!-- Main Object Page Layout with Header and Sections -->
+    <ObjectPageLayout
+        id="ObjectPageLayout"
+        showTitleInHeaderContent="true"
+        alwaysShowContentHeader="false"
+        preserveHeaderStateOnScroll="false"
+        headerContentPinnable="true"
+        isChildPage="true"
+        upperCaseAnchorBar="false"
+    >
+        <!-- Header Title displaying user name and profile image -->
+        <headerTitle>
+            <ObjectPageDynamicHeaderTitle id="oDynamicHeader">
+                <!-- Expanded and snapped heading for user's full name -->
+                <expandedHeading>
+                    <m:Title
+                        text="{parts: [{path: 'USERS_DATA>FIRST_NAME'}, {path: 'USERS_DATA>LAST_NAME'}], formatter: '.formatter.fullName'}"
+                        wrapping="true"
+                        class="sapUiSmallMarginEnd"
+                    />
+                </expandedHeading>
+                <snappedHeading>
+                    <layout:HorizontalLayout
+                        allowWrapping="false"
+                        class="sapUiSmallMargin"
+                    >
+                        <!-- Avatar -->
+                        <m:Avatar
+                            src="{USERS_DATA>PROFILE_IMAGE}"
+                            displaySize="M"
+                            displayShape="Square"
+                            class="sapUiTinyMarginEnd"
+                        />
+
+                        <!-- Name and Role -->
+                        <layout:VerticalLayout>
+                            <m:Title
+                                text="{parts: [{path: 'USERS_DATA>FIRST_NAME'}, {path: 'USERS_DATA>LAST_NAME'}], formatter: '.formatter.fullName'}"
+                                wrapping="false"
+                            />
+
+                            <m:ObjectStatus
+                                text="{path: 'USERS_DATA>ROLE/0/ROLE_ID', formatter: '.formatter.formatRole'}"
+                            />
+                            <m:ObjectStatus
+                                text="{path : 'USERS_DATA>IS_ACTIVATED', formatter: '.formatter.activeFormat'}"
+                                state="{path:'USERS_DATA>IS_ACTIVATED', formatter: '.formatter.statusState'}"
+                                class=" sapUiBoldText"
+                            />
+                        </layout:VerticalLayout>
+                    </layout:HorizontalLayout>
+                </snappedHeading>
+
+                <!-- Action buttons in the header (e.g., Close button) -->
+                <actions>
+                    <m:Button
+                        text="Edit"
+                        type="Emphasized"
+                        press="handleEdit"
+                    />
+
+                    <m:Button
+                        text="Close"
+                        type="Emphasized"
+                        press="handleClose"
+                    />
+                </actions>
+            </ObjectPageDynamicHeaderTitle>
+        </headerTitle>
+
+        <!-- Header Content with user profile details -->
+        <headerContent>
+            <m:FlexBox
+                wrap="Wrap"
+                fitContainer="true"
+                direction="Row"
+                justifyContent="SpaceBetween"
+                alignItems="Center"
+            >
+                <!-- Profile Image and Email -->
+                <m:HBox
+                    width="40%"
+                    alignItems="Center"
+                    justifyContent="SpaceAround"
+                >
+                    <m:Avatar
+                        src="{USERS_DATA>PROFILE_IMAGE}"
+                        displaySize="L"
+                        displayShape="Square"
+                        class="sapUiTinyMargin"
+                    />
+                    <layout:VerticalLayout class="sapUiSmallMargin" allowWrapping="false">
+                        <m:ObjectStatus
+                            title="Email"
+                            text="{path: 'USERS_DATA>EMAIL', formatter: '.formatter.nullState'}"
+                        />
+
+                        <m:ObjectStatus
+                            title="Phone Number"
+                            text="{path: 'USERS_DATA>MOBILE', formatter: '.formatter.nullState'}"
+                        />
+                        <m:ObjectStatus
+                            title="Role"
+                            text="{path: 'USERS_DATA>ROLE/0/ROLE_ID', formatter: '.formatter.formatRole'}"
+                        />
+                    </layout:VerticalLayout>
+                </m:HBox>
+
+                <!-- Activation and Archiving Status -->
+                <m:VBox
+                    justifyContent="Center"
+                    alignItems="Center"
+                >
+                    <m:ObjectStatus
+                        text="{path : 'USERS_DATA>IS_ACTIVATED', formatter: '.formatter.activeFormat'}"
+                        state="{path:'USERS_DATA>IS_ACTIVATED', formatter: '.formatter.statusState'}"
+                        class=" sapUiBoldText"
+                    />
+                    <m:ObjectStatus
+                        text="{= ${USERS_DATA>IS_ARCHIVED} === '1' ? 'Archived' : 'Not Archived'}"
+                        state="{path:'USERS_DATA>IS_ARCHIVED', formatter: '.formatter.statusState'}"
+                        class=" sapUiBoldText"
+                    />
+
+                </m:VBox>
+            </m:FlexBox>
+        </headerContent>
+
+        <!-- Section: User Identification -->
+        <sections>
+            <ObjectPageSection
+                id="userIdentification"
+                title="User Identification"
+            >
+                <!-- User ID and Employee ID details -->
+                <subSections>
+                    <ObjectPageSubSection>
+                        <blocks>
+                            <form:SimpleForm
+                                layout="ResponsiveGridLayout"
+                                labelSpanL="12"
+                                labelSpanM="12"
+                                emptySpanL="0"
+                                emptySpanM="0"
+                                columnsL="1"
+                                columnsM="1"
+                            >
+                                <form:content>
+                                    <m:Label text="User ID" />
+                                    <m:Text
+                                        text="{path: 'USERS_DATA>ID', formatter: '.formatter.nullState'}"
+                                    />
+                                    <m:Label text="Employee ID" />
+                                    <m:Text
+                                        text="{path: 'USERS_DATA>EMPLOYEE_CODE', formatter: '.formatter.nullState'}"
+                                    />
+
+                                    <m:Label text="Role ID" />
+                                    <m:Text
+                                        text="{path: 'USERS_DATA>ROLE/0/ROLE_ID', formatter: '.formatter.nullState'}"
+                                    />
+
+                                    <m:Label text="Role Name" />
+                                    <m:Text
+                                        text="{path: 'USERS_DATA>ROLE/0/ROLE_ID', formatter: '.formatter.formatRole'}"
+                                    />
+                                </form:content>
+                            </form:SimpleForm>
+                        </blocks>
+                    </ObjectPageSubSection>
+                </subSections>
+            </ObjectPageSection>
+
+            <!-- Section: Personal Information -->
+            <ObjectPageSection
+                id="personalInfo"
+                title="Personal Information"
+            >
+                <!-- Details like First Name, Last Name, Email, and Mobile -->
+                <subSections>
+                    <ObjectPageSubSection>
+                        <blocks>
+                            <form:SimpleForm
+                                layout="ResponsiveGridLayout"
+                                labelSpanL="12"
+                                labelSpanM="12"
+                                emptySpanL="0"
+                                emptySpanM="0"
+                                columnsL="1"
+                                columnsM="1"
+                            >
+                                <form:content>
+                                    <m:Label text="First Name" />
+                                    <m:Text
+                                        text="{path: 'USERS_DATA>FIRST_NAME', formatter: '.formatter.nullState'}"
+                                    />
+                                    <m:Label text="Last Name" />
+                                    <m:Text
+                                        text="{path: 'USERS_DATA>LAST_NAME', formatter: '.formatter.nullState'}"
+                                    />
+                                    <m:Label text="Email" />
+                                    <m:Text
+                                        text="{path: 'USERS_DATA>EMAIL', formatter: '.formatter.nullState'}"
+                                    />
+                                    <m:Label text="Mobile" />
+                                    <m:Text
+                                        text="{path: 'USERS_DATA>MOBILE', formatter: '.formatter.nullState'}"
+                                    />
+                                </form:content>
+                            </form:SimpleForm>
+                        </blocks>
+                    </ObjectPageSubSection>
+                </subSections>
+            </ObjectPageSection>
+
+            <!-- Section: Employment Details -->
+            <ObjectPageSection
+                id="employeeDetails"
+                title="Employment Details"
+            >
+                <!-- Employment-specific details like Designation, Zone, Division Identifier, and Manager -->
+                <subSections>
+                    <ObjectPageSubSection>
+                        <blocks>
+                            <form:SimpleForm
+                                layout="ResponsiveGridLayout"
+                                labelSpanL="12"
+                                labelSpanM="12"
+                                emptySpanL="0"
+                                emptySpanM="0"
+                                columnsL="1"
+                                columnsM="1"
+                            >
+                                <form:content>
+                                    <m:Label text="Designation" />
+                                    <m:Text
+                                        text="{path: 'USERS_DATA>DESIGNATION', formatter: '.formatter.nullState'}"
+                                    />
+                                    <m:Label text="Zone" />
+                                    <m:Text
+                                        text="{path: 'USERS_DATA>ZONE', formatter: '.formatter.nullState'}"
+                                    />
+                                    <m:Label text="Division Identifier" />
+                                    <m:Text
+                                        text="{path: 'USERS_DATA>DIVISION_IDENTIFIER', formatter: '.formatter.nullState'}"
+                                    />
+                                    <m:Label text="Manager" />
+                                    <m:Text
+                                        text="{path: 'USERS_DATA>MANAGER', formatter: '.formatter.nullState'}"
+                                    />
+
+                                    <m:Label text="Sales Group" />
+                                    <m:Text
+                                        text="{path: 'USERS_DATA>SALES_GROUPS/0/SALES_GROUP', formatter: '.formatter.nullState'}"
+                                    />
+                                </form:content>
+                            </form:SimpleForm>
+                        </blocks>
+                    </ObjectPageSubSection>
+                </subSections>
+            </ObjectPageSection>
+
+
+            <!-- RSM Depo id's -->
+            <ObjectPageSection
+                title="Depo"
+                visible="{toggleSection>/rsmMapVisible}"
+            >
+                <subSections>
+                    <ObjectPageSubSection>
+                        <m:VBox>
+                            <m:OverflowToolbar
+                                style="Clear"
+                                class="sapUiSmallMarginBottom"
+                            >
+                                <m:SearchField
+                                    id="searchFieldforDepoinRSM"
+                                    width="30%"
+                                    placeholder="Search Depo ID"
+                                    liveChange="onLiveSearchforRSMDepo"
+                                />
+                            </m:OverflowToolbar>
+                            <m:ScrollContainer
+                                width="100%"
+                                height="300px"
+                                horizontal="false"
+                                vertical="true"
+                            >
+                                <m:List
+                                    id="depotList"
+                                    items="{
+                                path: 'rsmDepos>/Depos',
+                                sorter: {
+                                path: 'VWERK',
+                                descending: false
+                                }
+                     
+                                }"
+                                >
+                                    <m:items>
+                                        <m:StandardListItem
+                                            title="{rsmDepos>VWERK}"
+                                            visible="true"
+                                        />
+                                    </m:items>
+                                </m:List>
+                            </m:ScrollContainer>
+                        </m:VBox>
+                    </ObjectPageSubSection>
+                </subSections>
+            </ObjectPageSection>
+
+            <!-- RSM Assigning Tables -->
+            <ObjectPageSection
+                id="tsiAndASMforRSM"
+                title="Assign"
+                visible="{toggleSection>/rsmMapVisible}"
+                titleUppercase="false"
+                showTitle="false"
+            >
+                <subSections>
+                    <!-- ASM for RSM -->
+                    <ObjectPageSubSection
+                        id="ASMusersforRSM"
+                        title="ASM"
+                    >
+                    
+                        <ui:Table
+                            id="ASMusersTableforRSM"
+                            width="100%"
+                            rows="{
+							path: 'rsmDepos>/ASMUsers',
+							sorter: {
+								path: 'ASMID',
+                                descending: false
+							}
+						}"
+                            showNoData="true"
+                        >
+                            <ui:extension>
+                                <m:OverflowToolbar
+                                    style="Clear"
+                                    class="sapUiSmallMarginBottom"
+                                >
+                                    <m:SearchField
+                                        id="searchFieldforASMinRSM"
+                                        width="30%"
+                                        placeholder="Search by Employee ID or Email"
+                                        liveChange="onLiveSearchforASMuser"
+                                    />
+
+                                    <m:ToolbarSpacer />
+                                    <!-- <m:Button
+                                    id="btnForASMinRSMuser"
+                                    text="ADD"
+                                    icon="sap-icon://add"
+                                    type="Emphasized"
+                                    press=".onASMAssignUser"
+                                /> -->
+                                </m:OverflowToolbar>
+                            </ui:extension>
+                            <ui:rowMode>
+                                <uirm:Auto minRowCount="10" />
+                            </ui:rowMode>
+                            <ui:columns>
+                                <ui:Column label="ID">
+                                    <ui:template>
+                                        <m:Text text="{rsmDepos>ASMID}" />
+                                    </ui:template>
+                                </ui:Column>
+                                <ui:Column label="Name">
+                                    <ui:template>
+                                        <m:Text text="{rsmDepos>ASMNAME}" />
+                                    </ui:template>
+                                </ui:Column>
+                                <ui:Column label="Email">
+                                    <ui:template>
+                                        <m:Text text="{rsmDepos>EMAIL_ASM}" />
+                                    </ui:template>
+                                </ui:Column>
+                                <ui:Column label="Sales Group">
+                                    <ui:template>
+                                        <m:Text
+                                            text="{rsmDepos>ASMUNIQUE_SG}"
+                                        />
+                                    </ui:template>
+                                </ui:Column>
+                            </ui:columns>
+                        </ui:Table>
+                    </ObjectPageSubSection>
+
+                    <!-- TSI for RSM -->
+                    <ObjectPageSubSection
+                        id="TSIusersforRSM"
+                        title="TSI"
+                    >
+                   
+
+                        <ui:Table
+                            id="TSIusersTableforRSM"
+                            width="100%"
+                            rows="{
+							path: 'rsmDepos>/TSIUsers',
+							sorter: {
+								path: 'SALESMANID'
+							}
+						}"
+                            showNoData="true"
+                        >
+                            <ui:extension>
+                                <m:OverflowToolbar
+                                    style="Clear"
+                                    class="sapUiSmallMarginBottom"
+                                >
+                                    <m:SearchField
+                                        id="searchFieldforTSIinRSM"
+                                        width="30%"
+                                        placeholder="Search by Employee ID or Email"
+                                        liveChange="onLiveSearchforTSIuser"
+                                    />
+                                    <m:ToolbarSpacer />
+                                    <!-- <m:Button
+                                    id="btnForTSIinRSMuser"
+                                    text="ADD"
+                                    icon="sap-icon://add"
+                                    type="Emphasized"
+                                    press=".onTSIAssignUser"
+                                /> -->
+                                </m:OverflowToolbar>
+                            </ui:extension>
+                            <ui:rowMode>
+                                <uirm:Auto minRowCount="10" />
+                            </ui:rowMode>
+                            <ui:columns>
+                                <ui:Column label="ID">
+                                    <ui:template>
+                                        <m:Text text="{rsmDepos>SALESMANID}" />
+                                    </ui:template>
+                                </ui:Column>
+                                <ui:Column label="Name">
+                                    <ui:template>
+                                        <m:Text text="{rsmDepos>TSINAME}" />
+                                    </ui:template>
+                                </ui:Column>
+                                <ui:Column label="Email">
+                                    <ui:template>
+                                        <m:Text text="{rsmDepos>EMAIL_TSI}" />
+                                    </ui:template>
+                                </ui:Column>
+                                <ui:Column label="Sales Group">
+                                    <ui:template>
+                                        <m:Text text="{rsmDepos>VKGRP}" />
+                                    </ui:template>
+                                </ui:Column>
+                            </ui:columns>
+                        </ui:Table>
+                    </ObjectPageSubSection>
+                </subSections>
+            </ObjectPageSection>
+
+            <!-- ASM Assigning Table -->
+            <!-- TSI for ASM -->
+            <ObjectPageSection
+                id="tsiforASM"
+                visible="{toggleSection>/asmMapVisible}"
+            >
+                <ObjectPageSubSection
+                    id="TSIusersforASM"
+                    title="TSI"
+                >
+                  
+                    <ui:Table
+                        id="TSIusersTableforASM"
+                        width="100%"
+                        rows="{
+							path: 'USERS_DATA>ASM',
+							sorter: {
+								path: 'SALESMANID'
+							}
+						}"
+                        showNoData="true"
+                    >
+                        <ui:extension>
+                            <m:OverflowToolbar>
+                                <m:SearchField
+                                    width="30%"
+                                    placeholder="Search ID / Email"
+                                    liveChange="onLiveSearchforTSIuserinASM"
+                                />
+                                <m:ToolbarSpacer />
+                                <!-- <m:Button
+                                    icon="sap-icon://add"
+                                    text="Add"
+                                    type="Emphasized"
+                                    press=".onTSIAssignUser"
+                                /> -->
+                            </m:OverflowToolbar>
+                        </ui:extension>
+                        <ui:rowMode>
+                            <uirm:Auto minRowCount="10" />
+                        </ui:rowMode>
+                        <ui:columns>
+                            <ui:Column label="ID">
+                                <ui:template>
+                                    <m:Text text="{USERS_DATA>SALESMANID}" />
+                                </ui:template>
+                            </ui:Column>
+                            <ui:Column label="Name">
+                                <ui:template>
+                                    <m:Text text="{USERS_DATA>TSINAME}" />
+                                </ui:template>
+                            </ui:Column>
+                            <ui:Column label="Email">
+                                <ui:template>
+                                    <m:Text text="{USERS_DATA>EMAIL_TSI}" />
+                                </ui:template>
+                            </ui:Column>
+                            <ui:Column label="Sales Group">
+                                <ui:template>
+                                    <m:Text text="{USERS_DATA>VKGRP}" />
+                                </ui:template>
+                            </ui:Column>
+                        </ui:columns>
+                    </ui:Table>
+                </ObjectPageSubSection>
+            </ObjectPageSection>
+
+            <!-- TSI mapped table  details for RSM and ASM  -->
+            <ObjectPageSection
+                id="assignedDetailsforTSI"
+                title="Assigned"
+                visible="{toggleSection>/tsiMapVisible}"
+                showTitle="false"
+            >
+                <!-- mapped rsm for TSI -->
+                <ObjectPageSubSection title="RSM">
+                   
+                    <ui:Table
+                        id="assignedRsmTable"
+                        width="auto"
+                        rows="{
+                        path: 'USERS_DATA>TSI'
+                        }"
+                        showNoData="true"
+                    >
+                        <ui:extension>
+                            <m:Toolbar>
+                                <m:SearchField
+                                    id="searchFieldRSM"
+                                    class="sapUiSmallMargin"
+                                    width="30%"
+                                    placeholder="Search..."
+                                />
+                            </m:Toolbar>
+                        </ui:extension>
+                        <ui:rowMode>
+                            <uirm:Auto minRowCount="5" />
+                        </ui:rowMode>
+                        <ui:columns>
+                            <ui:Column label="ID">
+                                <ui:template>
+                                    <m:Text text="{USERS_DATA>DSMID}" />
+                                </ui:template>
+                            </ui:Column>
+                            <ui:Column label="Email">
+                                <ui:template>
+                                    <m:Text text="{USERS_DATA>EMAIL_DSM}" />
+                                </ui:template>
+                            </ui:Column>
+                            <ui:Column label="Depo">
+                                <ui:template>
+                                    <m:Text
+                                        text="{USERS_DATA>DSMUNIQUE_DEPO}"
+                                    />
+                                </ui:template>
+                            </ui:Column>
+                            <ui:Column label="Sales Group">
+                                <ui:template>
+                                    <m:Text text="{USERS_DATA>DSMUNIQUE_SG}" />
+                                </ui:template>
+                            </ui:Column>
+                        </ui:columns>
+                    </ui:Table>
+                </ObjectPageSubSection>
+
+                <!-- mapped asm for TSI -->
+                <ObjectPageSubSection title="ASM">
+
+                    <ui:Table
+                        id="assignedAsmTable"
+                        width="auto"
+                        rows="{
+                        path: 'USERS_DATA>TSI'
+                        }"
+                        showNoData="true"
+                        >
+                        <ui:extension>
+                            <m:Toolbar>
+                                <m:SearchField
+                                    id="searchFieldASM"
+                                    class="sapUiSmallMargin"
+                                    width="30%"
+                                    placeholder="Search..."
+                                />
+                            </m:Toolbar>
+                        </ui:extension>
+                        <ui:rowMode>
+                            <uirm:Auto minRowCount="5" />
+                        </ui:rowMode>
+                        <ui:columns>
+                            <ui:Column label="ID">
+                                <ui:template>
+                                    <m:Text text="{USERS_DATA>ASMID}" />
+                                </ui:template>
+                            </ui:Column>
+                            <ui:Column label="Name">
+                                <ui:template>
+                                    <m:Text text="{USERS_DATA>ASMNAME}" />
+                                </ui:template>
+                            </ui:Column>
+                            <ui:Column label="Email">
+                                <ui:template>
+                                    <m:Text text="{USERS_DATA>EMAIL_ASM}" />
+                                </ui:template>
+                            </ui:Column>
+
+                            <ui:Column label="Sales Group">
+                                <ui:template>
+                                    <m:Text text="{USERS_DATA>ASMUNIQUE_SG}" />
+                                </ui:template>
+                            </ui:Column>
+                        </ui:columns>
+                    </ui:Table>
+                </ObjectPageSubSection>
+            </ObjectPageSection>
+                        <!-- section: Logs Information -->
+            <ObjectPageSection
+                id="logsInfo"
+                title="Logs Information"
+                >
+                <subSections>
+                    <ObjectPageSubSection>
+                        <blocks>
+                            <form:SimpleForm
+                                layout="ResponsiveGridLayout"
+                                labelSpanL="12"
+                                labelSpanM="12"
+                                emptySpanL="0"
+                                emptySpanM="0"
+                                columnsL="1"
+                                columnsM="1"
+                            >
+                                <form:content>
+                                    <m:Label text="Created At" />
+                                    <m:Text
+                                        text="{path: 'USERS_DATA>CREATED_AT', formatter: '.formatter.nullState'}"
+                                    />
+
+                                    <m:Label text="Last Login" />
+                                    <m:Text
+                                        text="{path: 'USERS_DATA>LAST_LOGIN_AT', formatter: '.formatter.nullState'}"
+                                    />
+
+                                    <m:Label text="Updated At" />
+                                    <m:Text
+                                        text="{path: 'USERS_DATA>UPDATED_AT', formatter: '.formatter.nullState'}"
+                                    />
+                                </form:content>
+                            </form:SimpleForm>
+                        </blocks>
+                    </ObjectPageSubSection>
+                </subSections>
+            </ObjectPageSection>
+        </sections>
+    </ObjectPageLayout>
+</mvc:View>

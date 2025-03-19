@@ -1,0 +1,146 @@
+{
+  "_version": "1.65.0",
+  "sap.app": {
+    "id": "knplsalesofficersportal",
+    "type": "application",
+    "i18n": "i18n/i18n.properties",
+    "applicationVersion": {
+      "version": "0.0.1"
+    },
+    "title": "{{appTitle}}",
+    "description": "{{appDescription}}",
+    "resources": "resources.json",
+    "sourceTemplate": {
+      "id": "@sap/generator-fiori:basic",
+      "version": "1.16.5",
+      "toolsId": "0af1cbc5-6999-4553-aa33-0528bdd41452"
+    },
+    "dataSources": {
+      "mainService": {
+        "uri": "/tsi/",
+        "type": "OData",
+        "settings": {
+          "annotations": [],
+          "localUri": "localService/mainService/metadata.xml",
+          "odataVersion": "4.0"
+        }
+      }
+    }
+  },
+  "sap.ui": {
+    "technology": "UI5",
+    "icons": {
+      "icon": "",
+      "favIcon": "",
+      "phone": "",
+      "phone@2": "",
+      "tablet": "",
+      "tablet@2": ""
+    },
+    "deviceTypes": {
+      "desktop": true,
+      "tablet": true,
+      "phone": true
+    }
+  },
+  "sap.ui5": {
+    "flexEnabled": true,
+    "dependencies": {
+      "minUI5Version": "1.133.0",
+      "libs": {
+        "sap.m": {},
+        "sap.ui.core": {}
+      }
+    },
+    "contentDensities": {
+      "compact": true,
+      "cozy": true
+    },
+    "models": {
+      "i18n": {
+        "type": "sap.ui.model.resource.ResourceModel",
+        "settings": {
+          "bundleName": "knplsalesofficersportal.i18n.i18n"
+        }
+      },
+      "USERS_DATA": {
+        "dataSource": "mainService",
+        "preload": true,
+        "settings": {
+          "operationMode": "Server",
+          "autoExpandSelect": true,
+          "earlyRequests": true
+        }
+      }
+    },
+    "resources": {
+      "css": [
+        {
+          "uri": "css/style.css"
+        }
+      ]
+    },
+    "routing": {
+      "config": {
+        "routerClass": "sap.m.routing.Router",
+        "type": "View",
+        "viewType": "XML",
+        "path": "knplsalesofficersportal.view",
+        "transition": "slide",
+        "controlId": "fcl",
+        "bypassed": {},
+        "async": true
+      },
+      "routes": [
+                {
+                    "pattern": ":layout:",
+                    "name": "list",
+                    "target": [
+                        "list"
+                    ]
+                },
+                {
+                    "pattern": "detail/ID={userID}&ROLE={role}/{layout}",
+                    "name": "detail",
+                    "target": [
+                        "list",
+                        "detail"
+                    ]
+                },
+                {
+                    "pattern": "detailGroup/ID={userID}&ROLE={role}/{layout}",
+                    "name": "detailGroup",
+                    "target": [
+                        "list",
+                        "detail",
+                        "detailGroup"
+                    ]
+                }
+            ],
+            "targets": {
+                "list": {
+                    "name": "List",
+                    "controlAggregation": "beginColumnPages"
+                },
+                "detail": {
+                    "name": "Detail",
+                    "controlAggregation": "midColumnPages"
+                },
+                "detailGroup": {
+                    "name": "Groups",
+                    "controlAggregation": "endColumnPages"
+                }
+            }
+        },
+        "rootView": {
+            "viewName": "knplsalesofficersportal.view.FlexibleColumnLayout",
+            "type": "XML",
+            "async": true,
+            "id": "fcl"
+        }
+  },
+  "sap.cloud": {
+    "public": true,
+    "service": "knplsalesofficersportal"
+  }
+}

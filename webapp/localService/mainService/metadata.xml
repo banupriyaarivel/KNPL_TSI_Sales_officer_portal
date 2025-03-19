@@ -1,0 +1,1161 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="4.0" xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx">
+    <edmx:Reference Uri="https://sap.github.io/odata-vocabularies/vocabularies/Common.xml">
+        <edmx:Include Alias="Common" Namespace="com.sap.vocabularies.Common.v1"/>
+    </edmx:Reference>
+    <edmx:Reference Uri="https://oasis-tcs.github.io/odata-vocabularies/vocabularies/Org.OData.Core.V1.xml">
+        <edmx:Include Alias="Core" Namespace="Org.OData.Core.V1"/>
+    </edmx:Reference>
+    <edmx:DataServices>
+        <Schema Namespace="TSIService" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+            <EntityContainer Name="EntityContainer">
+                <EntitySet Name="LoyaltyParticipantEntity" EntityType="TSIService.LoyaltyParticipantEntity"/>
+                <EntitySet Name="user" EntityType="TSIService.user">
+                    <NavigationPropertyBinding Path="SALES_GROUPS" Target="USER_SALES_GROUP_MAP"/>
+                    <NavigationPropertyBinding Path="ROLE" Target="MAP_USER_ROLE"/>
+                    <NavigationPropertyBinding Path="RSM" Target="masterECC"/>
+                    <NavigationPropertyBinding Path="ASM" Target="masterECC"/>
+                    <NavigationPropertyBinding Path="TSI" Target="masterECC"/>
+                </EntitySet>
+                <EntitySet Name="masterECC" EntityType="TSIService.masterECC"/>
+                <EntitySet Name="USER_SALES_GROUP_MAP" EntityType="TSIService.USER_SALES_GROUP_MAP"/>
+                <EntitySet Name="MAP_USER_ROLE" EntityType="TSIService.MAP_USER_ROLE"/>
+                <FunctionImport Name="getASMUserList" Function="TSIService.getASMUserList"/>
+                <FunctionImport Name="getSalesOfficesByASMRSMList" Function="TSIService.getSalesOfficesByASMRSMList"/>
+                <FunctionImport Name="getDepotByRSM" Function="TSIService.getDepotByRSM"/>
+                <FunctionImport Name="getTSIUsersBySalesOfficeList" Function="TSIService.getTSIUsersBySalesOfficeList"/>
+                <FunctionImport Name="getInfluencerBusinessGenerationKPI" Function="TSIService.getInfluencerBusinessGenerationKPI"/>
+                <FunctionImport Name="getInfluencerBusinessGenerationSummaryKPI" Function="TSIService.getInfluencerBusinessGenerationSummaryKPI"/>
+                <FunctionImport Name="getInfluencerLeadsKPI" Function="TSIService.getInfluencerLeadsKPI"/>
+                <FunctionImport Name="getInfluencerSitesKPI" Function="TSIService.getInfluencerSitesKPI"/>
+                <FunctionImport Name="getDGADealerLeadCounts" Function="TSIService.getDGADealerLeadCounts"/>
+                <FunctionImport Name="getDGATotalMRValue" Function="TSIService.getDGATotalMRValue"/>
+                <FunctionImport Name="getDGATotalMRVolume" Function="TSIService.getDGATotalMRVolume"/>
+                <FunctionImport Name="getIncentiveKPIs" Function="TSIService.getIncentiveKPIs"/>
+                <FunctionImport Name="getIncentiveCircularDetails" Function="TSIService.getIncentiveCircularDetails"/>
+                <FunctionImport Name="getInfluencerLoyaltyParticipantKPI" Function="TSIService.getInfluencerLoyaltyParticipantKPI"/>
+                <FunctionImport Name="getInfluencerList" Function="TSIService.getInfluencerList"/>
+                <FunctionImport Name="getInfluencerHLKPIs" Function="TSIService.getInfluencerHLKPIs"/>
+                <FunctionImport Name="getInfluencerSchemeKPIs" Function="TSIService.getInfluencerSchemeKPIs"/>
+                <FunctionImport Name="getInfluencerDetailKPIs" Function="TSIService.getInfluencerDetailKPIs"/>
+                <FunctionImport Name="getInfluencerPointsDetailKPIs" Function="TSIService.getInfluencerPointsDetailKPIs"/>
+                <FunctionImport Name="getProductCategoryList" Function="TSIService.getProductCategoryList"/>
+                <FunctionImport Name="getInfluencerPurchaseVolKPIs" Function="TSIService.getInfluencerPurchaseVolKPIs"/>
+                <FunctionImport Name="getInfluencerEligibleSchemeKPI" Function="TSIService.getInfluencerEligibleSchemeKPI"/>
+                <FunctionImport Name="getInfluencerSchemeDetailsKPI" Function="TSIService.getInfluencerSchemeDetailsKPI"/>
+                <FunctionImport Name="getInfluencerEarningsKPI" Function="TSIService.getInfluencerEarningsKPI"/>
+                <FunctionImport Name="getInfluencerSchemeTargetKPI" Function="TSIService.getInfluencerSchemeTargetKPI"/>
+                <FunctionImport Name="getUserProfile" Function="TSIService.getUserProfile"/>
+                <FunctionImport Name="getUpcomingODKPIs" Function="TSIService.getUpcomingODKPIs"/>
+                <FunctionImport Name="getCollectionKPIs" Function="TSIService.getCollectionKPIs"/>
+                <FunctionImport Name="getSalesValueKPIs" Function="TSIService.getSalesValueKPIs"/>
+                <FunctionImport Name="getVolumeKPIs" Function="TSIService.getVolumeKPIs"/>
+                <FunctionImport Name="getActiveDealerKPIs" Function="TSIService.getActiveDealerKPIs"/>
+                <FunctionImport Name="getBelowThresholdKPIs" Function="TSIService.getBelowThresholdKPIs"/>
+                <FunctionImport Name="getBudgetKPIs" Function="TSIService.getBudgetKPIs"/>
+                <FunctionImport Name="getNewCCDKPIs" Function="TSIService.getNewCCDKPIs"/>
+                <FunctionImport Name="getNewNDOKPIs" Function="TSIService.getNewNDOKPIs"/>
+                <FunctionImport Name="getOSODKPIs" Function="TSIService.getOSODKPIs"/>
+                <FunctionImport Name="getOverallVisitsKPIs" Function="TSIService.getOverallVisitsKPIs"/>
+                <FunctionImport Name="getSiteInfluencerVisitsKPIs" Function="TSIService.getSiteInfluencerVisitsKPIs"/>
+                <FunctionImport Name="getCustomerProspectVisitsKPIs" Function="TSIService.getCustomerProspectVisitsKPIs"/>
+                <FunctionImport Name="getMeetsConductedKPIs" Function="TSIService.getMeetsConductedKPIs"/>
+                <FunctionImport Name="getNotVisitedKPIs" Function="TSIService.getNotVisitedKPIs"/>
+                <FunctionImport Name="getYTDTrendsKPIs" Function="TSIService.getYTDTrendsKPIs"/>
+                <FunctionImport Name="getTownList" Function="TSIService.getTownList"/>
+                <FunctionImport Name="getCustomerList" Function="TSIService.getCustomerList"/>
+                <ActionImport Name="getCustomerODHLKPIs" Action="TSIService.getCustomerODHLKPIs"/>
+                <ActionImport Name="getCustomerHLKPIs" Action="TSIService.getCustomerHLKPIs"/>
+                <FunctionImport Name="getCustomerUpcomingODKPIs" Function="TSIService.getCustomerUpcomingODKPIs"/>
+                <FunctionImport Name="getCustomerCollectionKPIs" Function="TSIService.getCustomerCollectionKPIs"/>
+                <FunctionImport Name="getCustomerValueKPIs" Function="TSIService.getCustomerValueKPIs"/>
+                <FunctionImport Name="getCustomerVolumeKPIs" Function="TSIService.getCustomerVolumeKPIs"/>
+                <FunctionImport Name="getCustomerParticipationKPIs" Function="TSIService.getCustomerParticipationKPIs"/>
+                <FunctionImport Name="getCustomerFocusProductKPIs" Function="TSIService.getCustomerFocusProductKPIs"/>
+                <FunctionImport Name="getCustomerCNEarnedKPIs" Function="TSIService.getCustomerCNEarnedKPIs"/>
+                <FunctionImport Name="getCustomerSchemeQualificationKPIs" Function="TSIService.getCustomerSchemeQualificationKPIs"/>
+                <FunctionImport Name="getCustomerOSODKPIs" Function="TSIService.getCustomerOSODKPIs"/>
+                <FunctionImport Name="getCustomerVisitsKPIs" Function="TSIService.getCustomerVisitsKPIs"/>
+                <FunctionImport Name="getCustomerDetails" Function="TSIService.getCustomerDetails"/>
+                <FunctionImport Name="getAllCustomerListKPI" Function="TSIService.getAllCustomerListKPI"/>
+                <FunctionImport Name="getProductCategoryGroupList" Function="TSIService.getProductCategoryGroupList"/>
+                <FunctionImport Name="getProductTotalKPIs" Function="TSIService.getProductTotalKPIs"/>
+                <FunctionImport Name="getProductKPIs" Function="TSIService.getProductKPIs"/>
+                <FunctionImport Name="getCustomerProductValueKPIs" Function="TSIService.getCustomerProductValueKPIs"/>
+                <FunctionImport Name="getCustomerProductVolumeKPIs" Function="TSIService.getCustomerProductVolumeKPIs"/>
+                <FunctionImport Name="getCustomerProductParticipationKPIs" Function="TSIService.getCustomerProductParticipationKPIs"/>
+            </EntityContainer>
+            <EntityType Name="LoyaltyParticipantEntity">
+                <Key>
+                    <PropertyRef Name="NAME"/>
+                </Key>
+                <Property Name="NAME" Type="Edm.String" Nullable="false"/>
+                <Property Name="TOTAL" Type="Edm.String"/>
+                <Property Name="TARGET" Type="Edm.String"/>
+                <Property Name="MTD_VALUE" Type="Edm.String"/>
+                <Property Name="MTD_IS_HL" Type="Edm.Boolean"/>
+                <Property Name="YTD_VALUE" Type="Edm.String"/>
+                <Property Name="YTD_IS_HL" Type="Edm.Boolean"/>
+            </EntityType>
+            <EntityType Name="user">
+                <Key>
+                    <PropertyRef Name="ID"/>
+                </Key>
+                <Property Name="ID" Type="Edm.Int32" Nullable="false"/>
+                <Property Name="FIRST_NAME" Type="Edm.String" MaxLength="255"/>
+                <Property Name="LAST_NAME" Type="Edm.String" MaxLength="255"/>
+                <Property Name="EMAIL" Type="Edm.String" MaxLength="255"/>
+                <Property Name="PROFILE_IMAGE" Type="Edm.String" MaxLength="1000"/>
+                <Property Name="IS_ARCHIVED" Type="Edm.Byte"/>
+                <Property Name="CREATED_AT" Type="Edm.DateTimeOffset"/>
+                <Property Name="UPDATED_AT" Type="Edm.DateTimeOffset"/>
+                <Property Name="APP_VERSION" Type="Edm.String" MaxLength="5"/>
+                <Property Name="LAST_LOGIN_AT" Type="Edm.DateTimeOffset"/>
+                <Property Name="EMPLOYEE_CODE" Type="Edm.String" MaxLength="20"/>
+                <Property Name="ZONE" Type="Edm.String" MaxLength="10"/>
+                <Property Name="DESIGNATION" Type="Edm.String" MaxLength="10"/>
+                <Property Name="MANAGER" Type="Edm.String" MaxLength="255"/>
+                <Property Name="MOBILE" Type="Edm.String" MaxLength="15"/>
+                <Property Name="DIVISION_IDENTIFIER" Type="Edm.String" MaxLength="10"/>
+                <Property Name="IS_ACTIVATED" Type="Edm.Byte"/>
+                <NavigationProperty Name="SALES_GROUPS" Type="Collection(TSIService.USER_SALES_GROUP_MAP)">
+                    <OnDelete Action="Cascade"/>
+                </NavigationProperty>
+                <NavigationProperty Name="ROLE" Type="Collection(TSIService.MAP_USER_ROLE)">
+                    <OnDelete Action="Cascade"/>
+                </NavigationProperty>
+                <NavigationProperty Name="RSM" Type="Collection(TSIService.masterECC)"/>
+                <NavigationProperty Name="ASM" Type="Collection(TSIService.masterECC)"/>
+                <NavigationProperty Name="TSI" Type="Collection(TSIService.masterECC)"/>
+            </EntityType>
+            <EntityType Name="masterECC">
+                <Key>
+                    <PropertyRef Name="MANDT"/>
+                    <PropertyRef Name="TOWN"/>
+                    <PropertyRef Name="ASMID"/>
+                    <PropertyRef Name="ASMBP"/>
+                    <PropertyRef Name="SALESMANID"/>
+                    <PropertyRef Name="TSIBP"/>
+                </Key>
+                <Property Name="MANDT" Type="Edm.String" MaxLength="3" Nullable="false" DefaultValue="300"/>
+                <Property Name="TOWN" Type="Edm.String" MaxLength="40" Nullable="false" DefaultValue="0000"/>
+                <Property Name="VWERK" Type="Edm.String" MaxLength="4"/>
+                <Property Name="RSMID" Type="Edm.String" MaxLength="12"/>
+                <Property Name="RSMBP" Type="Edm.String" MaxLength="10"/>
+                <Property Name="RSMNAME" Type="Edm.String" MaxLength="40"/>
+                <Property Name="RSMUNIQUE_SG" Type="Edm.String" MaxLength="3"/>
+                <Property Name="RSMUNIQUE_DEPO" Type="Edm.String" MaxLength="4"/>
+                <Property Name="DSMID" Type="Edm.String" MaxLength="12"/>
+                <Property Name="DSMUNIQUE_SG" Type="Edm.String" MaxLength="3"/>
+                <Property Name="DSMUNIQUE_DEPO" Type="Edm.String" MaxLength="4"/>
+                <Property Name="EMAIL_DSM" Type="Edm.String" MaxLength="241"/>
+                <Property Name="ASMID" Type="Edm.String" MaxLength="12" Nullable="false"/>
+                <Property Name="ASMBP" Type="Edm.String" MaxLength="10" Nullable="false"/>
+                <Property Name="ASMUNIQUE" Type="Edm.String" MaxLength="4"/>
+                <Property Name="ASMNAME" Type="Edm.String" MaxLength="40"/>
+                <Property Name="ASMUNIQUE_SG" Type="Edm.String" MaxLength="3"/>
+                <Property Name="EMAIL_ASM" Type="Edm.String" MaxLength="241"/>
+                <Property Name="ASM_PHN_NO" Type="Edm.String" MaxLength="10"/>
+                <Property Name="SALESMANID" Type="Edm.String" MaxLength="12" Nullable="false"/>
+                <Property Name="TSIBP" Type="Edm.String" MaxLength="10" Nullable="false"/>
+                <Property Name="TSINAME" Type="Edm.String" MaxLength="40"/>
+                <Property Name="EMAIL_TSI" Type="Edm.String" MaxLength="241"/>
+                <Property Name="TSI_PHN_NO" Type="Edm.String" MaxLength="10"/>
+                <Property Name="VKGRP" Type="Edm.String" MaxLength="3"/>
+                <Property Name="DIVISION" Type="Edm.String" MaxLength="2"/>
+                <Property Name="USNAM" Type="Edm.String" MaxLength="12"/>
+                <Property Name="TIMESTAMP" Type="Edm.Decimal" Precision="15" Scale="0"/>
+            </EntityType>
+            <EntityType Name="USER_SALES_GROUP_MAP">
+                <Key>
+                    <PropertyRef Name="ID"/>
+                </Key>
+                <Property Name="ID" Type="Edm.Int32" Nullable="false"/>
+                <Property Name="USER_ID" Type="Edm.Int32"/>
+                <Property Name="SALES_GROUP" Type="Edm.String" MaxLength="5"/>
+                <Property Name="IS_ARCHIVED" Type="Edm.Byte"/>
+                <Property Name="CREATED_AT" Type="Edm.DateTimeOffset"/>
+                <Property Name="UPDATED_AT" Type="Edm.DateTimeOffset"/>
+            </EntityType>
+            <EntityType Name="MAP_USER_ROLE">
+                <Key>
+                    <PropertyRef Name="ID"/>
+                </Key>
+                <Property Name="ID" Type="Edm.Int32" Nullable="false"/>
+                <Property Name="USER_ID" Type="Edm.Int32"/>
+                <Property Name="ROLE_ID" Type="Edm.Int32"/>
+                <Property Name="IS_ARCHIVED" Type="Edm.Byte"/>
+                <Property Name="CREATED_AT" Type="Edm.DateTimeOffset"/>
+                <Property Name="CREATED_BY" Type="Edm.Int32"/>
+                <Property Name="UPDATED_AT" Type="Edm.DateTimeOffset"/>
+                <Property Name="UPDATED_BY" Type="Edm.Int32"/>
+            </EntityType>
+            <ComplexType Name="ASMUserItem">
+                <Property Name="NAME" Type="Edm.String"/>
+                <Property Name="EMAIL" Type="Edm.String"/>
+                <Property Name="SALES_GROUP" Type="Edm.String"/>
+                <Property Name="IS_SELECTED" Type="Edm.Boolean"/>
+                <Property Name="IS_VISIBLE" Type="Edm.Boolean"/>
+            </ComplexType>
+            <ComplexType Name="ASMUserListKPIResult">
+                <Property Name="USERS" Type="Collection(TSIService.ASMUserItem)" Nullable="false"/>
+                <Property Name="TOTAL_COUNT" Type="Edm.Int32"/>
+            </ComplexType>
+            <ComplexType Name="SalesOfficeItem">
+                <Property Name="NAME" Type="Edm.String"/>
+                <Property Name="EMAIL" Type="Edm.String"/>
+                <Property Name="SALES_GROUP" Type="Edm.String"/>
+                <Property Name="ASM_NAME" Type="Edm.String"/>
+                <Property Name="ASM_EMAIL" Type="Edm.String"/>
+                <Property Name="IS_SELECTED" Type="Edm.Boolean"/>
+                <Property Name="IS_VISIBLE" Type="Edm.Boolean"/>
+            </ComplexType>
+            <ComplexType Name="SalesOfficeKPIResult">
+                <Property Name="SALES_OFFICES" Type="Collection(TSIService.SalesOfficeItem)" Nullable="false"/>
+                <Property Name="TOTAL_COUNT" Type="Edm.Int32"/>
+            </ComplexType>
+            <ComplexType Name="DepotItem">
+                <Property Name="DEPOT" Type="Edm.String"/>
+                <Property Name="EMAIL" Type="Edm.String"/>
+                <Property Name="SALES_GROUP" Type="Edm.String"/>
+                <Property Name="IS_SELECTED" Type="Edm.Boolean"/>
+                <Property Name="IS_VISIBLE" Type="Edm.Boolean"/>
+            </ComplexType>
+            <ComplexType Name="DepotKPIResult">
+                <Property Name="DEPOT" Type="Collection(TSIService.DepotItem)" Nullable="false"/>
+                <Property Name="TOTAL_COUNT" Type="Edm.Int32"/>
+            </ComplexType>
+            <ComplexType Name="TSIUserItem">
+                <Property Name="FIRST_NAME" Type="Edm.String"/>
+                <Property Name="LAST_NAME" Type="Edm.String"/>
+                <Property Name="EMAIL" Type="Edm.String"/>
+                <Property Name="SALES_GROUP" Type="Edm.String"/>
+                <Property Name="ASM_EMAIL" Type="Edm.String"/>
+                <Property Name="ASM_NAME" Type="Edm.String"/>
+                <Property Name="TSI_NAME" Type="Edm.String"/>
+                <Property Name="IS_SELECTED" Type="Edm.Boolean"/>
+                <Property Name="IS_VISIBLE" Type="Edm.Boolean"/>
+            </ComplexType>
+            <ComplexType Name="TSIUserListKPIResult">
+                <Property Name="USERS" Type="Collection(TSIService.TSIUserItem)" Nullable="false"/>
+                <Property Name="TOTAL_COUNT" Type="Edm.Int32"/>
+            </ComplexType>
+            <ComplexType Name="DGABusinessGenerationKPIResult">
+                <Property Name="NAME" Type="Edm.String"/>
+                <Property Name="MTD" Type="Edm.String"/>
+                <Property Name="YTD" Type="Edm.String"/>
+            </ComplexType>
+            <ComplexType Name="DGABusinessGenerationSummaryKPIResult">
+                <Property Name="NAME" Type="Edm.String"/>
+                <Property Name="TODAY" Type="Edm.String"/>
+                <Property Name="YESTERDAY" Type="Edm.String"/>
+                <Property Name="MTD_TILL_YESTERDAY" Type="Edm.String"/>
+                <Property Name="MTD" Type="Edm.String"/>
+                <Property Name="YTD" Type="Edm.String"/>
+            </ComplexType>
+            <ComplexType Name="DGALeadsKPIResult">
+                <Property Name="NAME" Type="Edm.String"/>
+                <Property Name="UOM" Type="Edm.String"/>
+                <Property Name="MTD" Type="TSIService.DGALeadsKPIResult_MTD"/>
+                <Property Name="YTD" Type="TSIService.DGALeadsKPIResult_YTD"/>
+            </ComplexType>
+            <ComplexType Name="DGASitesKPIResult">
+                <Property Name="NAME" Type="Edm.String"/>
+                <Property Name="UOM" Type="Edm.String"/>
+                <Property Name="MTD" Type="Edm.String"/>
+                <Property Name="YTD" Type="Edm.String"/>
+            </ComplexType>
+            <ComplexType Name="DGADumpKPIResult">
+                <Property Name="NAME" Type="Edm.String"/>
+                <Property Name="CY" Type="TSIService.GeneralValueType"/>
+            </ComplexType>
+            <ComplexType Name="IncentiveColumns">
+                <Property Name="NAME" Type="Edm.String"/>
+                <Property Name="UOM" Type="Edm.String"/>
+                <Property Name="CY" Type="TSIService.GeneralValueType"/>
+                <Property Name="LY" Type="TSIService.GeneralValueType"/>
+                <Property Name="PERCENT_CHANGE" Type="TSIService.GeneralValueType"/>
+                <Property Name="INCENTIVE_ERANED" Type="TSIService.GeneralValueType"/>
+            </ComplexType>
+            <ComplexType Name="IncentiveBudgetColumns">
+                <Property Name="YTD_BUDGET" Type="TSIService.GeneralNameValueType"/>
+                <Property Name="ACTUAL_VALUE" Type="TSIService.GeneralNameValueType"/>
+                <Property Name="BUDGET_ACHIEVED" Type="TSIService.GeneralNameValueType"/>
+                <Property Name="BALANCE_VALUE" Type="TSIService.GeneralNameValueType"/>
+            </ComplexType>
+            <ComplexType Name="IncentiveMonthlyCriteriaColumns">
+                <Property Name="NAME" Type="Edm.String"/>
+                <Property Name="UOM" Type="Edm.String"/>
+                <Property Name="CY_MTD" Type="TSIService.GeneralValueType"/>
+                <Property Name="LY_MTD" Type="TSIService.GeneralValueType"/>
+                <Property Name="GROWTH_MTD" Type="TSIService.GeneralValueType"/>
+                <Property Name="INCENTIVE_MTD" Type="TSIService.GeneralValueType"/>
+                <Property Name="REMAINING_VALUE_MTD" Type="TSIService.GeneralValueType"/>
+                <Property Name="NEXT_SLAB_MTD" Type="TSIService.GeneralValueType"/>
+            </ComplexType>
+            <ComplexType Name="IncentiveCCDQuarterlyColumns">
+                <Property Name="NAME" Type="Edm.String"/>
+                <Property Name="UOM" Type="Edm.String"/>
+                <Property Name="MIN_CCD" Type="TSIService.GeneralValueType"/>
+                <Property Name="CCD_ADDED" Type="TSIService.GeneralValueType"/>
+                <Property Name="QTD_CCD_INCENTIVE" Type="TSIService.GeneralValueType"/>
+            </ComplexType>
+            <ComplexType Name="IncentiveQuarterlyParticipationColumns">
+                <Property Name="NAME" Type="Edm.String"/>
+                <Property Name="UOM" Type="Edm.String"/>
+                <Property Name="CY_QTD" Type="TSIService.GeneralValueType"/>
+                <Property Name="LY_QTD" Type="TSIService.GeneralValueType"/>
+                <Property Name="GROWTH_QTD" Type="TSIService.GeneralValueType"/>
+                <Property Name="INCENTIVE_QTD" Type="TSIService.GeneralValueType"/>
+                <Property Name="REMAINING_VALUE_QTD" Type="TSIService.GeneralValueType"/>
+                <Property Name="NEXT_SLAB_QTD" Type="TSIService.GeneralValueType"/>
+            </ComplexType>
+            <ComplexType Name="IncentiveForQuarterColumns">
+                <Property Name="NAME" Type="Edm.String"/>
+                <Property Name="UOM" Type="Edm.String"/>
+                <Property Name="INCENTIVE_QTD" Type="TSIService.GeneralValueType"/>
+            </ComplexType>
+            <ComplexType Name="IncentiveODAndCEIColumns">
+                <Property Name="NAME" Type="Edm.String"/>
+                <Property Name="UOM" Type="Edm.String"/>
+                <Property Name="QTD_START_OD" Type="TSIService.GeneralValueType"/>
+                <Property Name="QTD_END_OD" Type="TSIService.GeneralValueType"/>
+                <Property Name="CEI_QTD" Type="TSIService.GeneralValueType"/>
+            </ComplexType>
+            <ComplexType Name="IncentiveResult">
+                <Property Name="BUDGET_ACHIEVEMENT" Type="Collection(TSIService.IncentiveBudgetColumns)" Nullable="false"/>
+                <Property Name="MONTHLY_INCENTIVE_CRITERIA" Type="Collection(TSIService.IncentiveMonthlyCriteriaColumns)" Nullable="false"/>
+                <Property Name="CCD_QUARTERLY_INCENTIVE" Type="Collection(TSIService.IncentiveCCDQuarterlyColumns)" Nullable="false"/>
+                <Property Name="QUARTERLY_PARTICIPATION_INCENTIVE" Type="Collection(TSIService.IncentiveQuarterlyParticipationColumns)" Nullable="false"/>
+                <Property Name="INCENTIVE_FOR_QUARTER" Type="Collection(TSIService.IncentiveForQuarterColumns)" Nullable="false"/>
+                <Property Name="OD_CEI" Type="Collection(TSIService.IncentiveODAndCEIColumns)" Nullable="false"/>
+            </ComplexType>
+            <ComplexType Name="RowResult">
+                <Property Name="ROW1" Type="Edm.String"/>
+                <Property Name="ROW2" Type="Edm.String"/>
+            </ComplexType>
+            <ComplexType Name="TwoColumnResult">
+                <Property Name="VALUE_COLUMN1" Type="Edm.String"/>
+                <Property Name="VALUE_COLUMN2" Type="Edm.String"/>
+            </ComplexType>
+            <ComplexType Name="ThreeColumnResult">
+                <Property Name="VALUE_COLUMN1" Type="Edm.String"/>
+                <Property Name="VALUE_COLUMN2" Type="Edm.String"/>
+                <Property Name="VALUE_COLUMN3" Type="Edm.String"/>
+            </ComplexType>
+            <ComplexType Name="LabelValueResult">
+                <Property Name="LABEL" Type="Edm.String"/>
+                <Property Name="VALUE" Type="Edm.String"/>
+            </ComplexType>
+            <ComplexType Name="IncentiveCircularResult">
+                <Property Name="CIRCULAR_HEADER_LINE1" Type="Edm.String"/>
+                <Property Name="CIRCULAR_HEADER_LINE2" Type="Edm.String"/>
+                <Property Name="CIRCULAR_DESCRIPTION_LINE1" Type="Edm.String"/>
+                <Property Name="CIRCULAR_DESCRIPTION_LINE2" Type="Edm.String"/>
+                <Property Name="CIRCULAR_DESCRIPTION_LINE3" Type="Edm.String"/>
+                <Property Name="CIRCULAR_DESCRIPTION_LINE4" Type="Edm.String"/>
+                <Property Name="CIRCULAR_FOOTER_LINE1" Type="Edm.String"/>
+                <Property Name="CIRCULAR_FOOTER_LINE2" Type="Edm.String"/>
+                <Property Name="ELIGIBILITY_LINE" Type="Edm.String"/>
+                <Property Name="PARAMTERS_TABLE" Type="TSIService.IncentiveCircularResult_PARAMTERS_TABLE"/>
+                <Property Name="MONTHLY_TOPPINGS_TABLE" Type="TSIService.IncentiveCircularResult_MONTHLY_TOPPINGS_TABLE"/>
+                <Property Name="CCD_TABLE" Type="TSIService.IncentiveCircularResult_CCD_TABLE"/>
+                <Property Name="PAY_OUT_PROCESS" Type="TSIService.IncentiveCircularResult_PAY_OUT_PROCESS"/>
+                <Property Name="OD_AND_CEI_CORRECTION" Type="TSIService.IncentiveCircularResult_OD_AND_CEI_CORRECTION"/>
+                <Property Name="PREMIUM_EMULSION_TABLE" Type="TSIService.IncentiveCircularResult_PREMIUM_EMULSION_TABLE"/>
+                <Property Name="OTHER_IMPORTANT_TERMS" Type="TSIService.IncentiveCircularResult_OTHER_IMPORTANT_TERMS"/>
+            </ComplexType>
+            <ComplexType Name="PragatiLoyaltyParticipantKPIResult">
+                <Property Name="NAME" Type="Edm.String"/>
+                <Property Name="TOTAL" Type="Edm.String"/>
+                <Property Name="TARGET" Type="Edm.String"/>
+                <Property Name="MTD" Type="TSIService.GeneralValueType"/>
+                <Property Name="YTD" Type="TSIService.GeneralValueType"/>
+            </ComplexType>
+            <ComplexType Name="InfluencerListItem">
+                <Property Name="ID" Type="Edm.Int32"/>
+                <Property Name="NAME" Type="Edm.String"/>
+                <Property Name="MOBILE" Type="Edm.String"/>
+                <Property Name="MEMBERSHIP_CARD" Type="Edm.String"/>
+                <Property Name="PRIMARY_DEALER_ID" Type="Edm.String"/>
+                <Property Name="DEALER_NAME" Type="Edm.String"/>
+                <Property Name="SLAB" Type="Edm.String"/>
+                <Property Name="TOTAL_EARNED_POINTS" Type="Edm.String"/>
+            </ComplexType>
+            <ComplexType Name="InfluencerListKPIResult">
+                <Property Name="INFLUENCERS" Type="Collection(TSIService.InfluencerListItem)" Nullable="false"/>
+                <Property Name="TOTAL_COUNT" Type="Edm.Int32"/>
+            </ComplexType>
+            <ComplexType Name="InfluencerHLItem">
+                <Property Name="ID" Type="Edm.Int32"/>
+                <Property Name="MOBILE" Type="Edm.String"/>
+                <Property Name="NAME" Type="Edm.String"/>
+                <Property Name="MEMBERSHIP_CARD" Type="Edm.String"/>
+                <Property Name="PRIMARY_DEALER_ID" Type="Edm.String"/>
+                <Property Name="DEALER_NAME" Type="Edm.String"/>
+                <Property Name="SLAB" Type="Edm.String"/>
+                <Property Name="BUSINESS_CATEGORY" Type="Edm.String"/>
+                <Property Name="TOTAL_EARNED_POINTS" Type="Edm.String"/>
+                <Property Name="VOL_MTD" Type="Edm.String"/>
+                <Property Name="VOL_YTD" Type="Edm.String"/>
+            </ComplexType>
+            <ComplexType Name="InfluencerHLKPIResult">
+                <Property Name="INFLUENCERS" Type="Collection(TSIService.InfluencerHLItem)" Nullable="false"/>
+                <Property Name="TOTAL_COUNT" Type="Edm.Int32"/>
+            </ComplexType>
+            <ComplexType Name="SchemeKPIResult">
+                <Property Name="NAME" Type="Edm.String"/>
+                <Property Name="CODE" Type="Edm.String"/>
+                <Property Name="KPIS" Type="Collection(TSIService.SchemeKPIResult_KPIS)" Nullable="false"/>
+            </ComplexType>
+            <ComplexType Name="InfluencerDetailKPIResult">
+                <Property Name="ID" Type="Edm.Int32"/>
+                <Property Name="MOBILE" Type="Edm.String"/>
+                <Property Name="NAME" Type="Edm.String"/>
+                <Property Name="MEMBERSHIP_CARD" Type="Edm.String"/>
+                <Property Name="PRIMARY_DEALER_ID" Type="Edm.String"/>
+                <Property Name="DEALER_NAME" Type="Edm.String"/>
+                <Property Name="SLAB" Type="Edm.String"/>
+                <Property Name="ZONE_ID" Type="Edm.String"/>
+                <Property Name="DIVISION_ID" Type="Edm.String"/>
+                <Property Name="DEPOT" Type="Edm.String"/>
+            </ComplexType>
+            <ComplexType Name="InfluencerPointsDetailKPIResult">
+                <Property Name="NAME" Type="Edm.String"/>
+                <Property Name="CY" Type="TSIService.GeneralValueType"/>
+                <Property Name="LY" Type="TSIService.GeneralValueType"/>
+            </ComplexType>
+            <ComplexType Name="ProductCategoryKPIResult">
+                <Property Name="CATEGORY_CODE" Type="Edm.String"/>
+                <Property Name="CATEGORY_NAME" Type="Edm.String"/>
+            </ComplexType>
+            <ComplexType Name="InfluencerPurchaseVolKPIResult">
+                <Property Name="UOM" Type="Edm.String"/>
+                <Property Name="TOTAL_MTD" Type="Edm.String"/>
+                <Property Name="TOTAL_YTD" Type="Edm.String"/>
+                <Property Name="PRODUCTS" Type="Collection(TSIService.InfluencerPurchaseVolKPIResult_PRODUCTS)" Nullable="false"/>
+            </ComplexType>
+            <ComplexType Name="InfluencerEligibleSchemeKPIResult">
+                <Property Name="OFFER_CODE" Type="Edm.String"/>
+                <Property Name="TITLE" Type="Edm.String"/>
+                <Property Name="DESCRIPTION" Type="Edm.String"/>
+                <Property Name="END_DATE" Type="Edm.String"/>
+                <Property Name="REDEMPTION_CYCLE" Type="Edm.Int32"/>
+                <Property Name="CURRENT_REDEMPTION_INDEX" Type="Edm.Int32"/>
+            </ComplexType>
+            <ComplexType Name="OfferSelectedProducts">
+                <Property Name="CATEGORY" Type="Edm.String"/>
+                <Property Name="PRODUCTS" Type="Collection(Edm.String)" Nullable="false"/>
+            </ComplexType>
+            <ComplexType Name="InfluencerSchemeDetailsKPIResult">
+                <Property Name="TITLE" Type="Edm.String"/>
+                <Property Name="DESCRIPTION" Type="Edm.String"/>
+                <Property Name="OFFER_TYPE_ID" Type="Edm.Int32"/>
+                <Property Name="END_DATE" Type="Edm.String"/>
+                <Property Name="NAME" Type="Edm.String"/>
+                <Property Name="APPLICABLE_PRODUCTS" Type="Collection(TSIService.OfferSelectedProducts)" Nullable="false"/>
+                <Property Name="BONUS_PRODUCTS" Type="Collection(TSIService.OfferSelectedProducts)" Nullable="false"/>
+                <Property Name="INFLUENCER_PROGRESS_VALUE" Type="Edm.Int32"/>
+                <Property Name="INFLUENCER_PROGRESS_MAX_VALUE" Type="Edm.Int32"/>
+                <Property Name="PROGRESS_TYPE" Type="Edm.String"/>
+                <Property Name="PROGRESS_UNIT" Type="Edm.String"/>
+                <Property Name="PROGRESS_VALUE" Type="Edm.Int32"/>
+                <Property Name="PROGRESS_MAX" Type="Edm.Int32"/>
+                <Property Name="MAX_SLAB_VALUE" Type="Edm.Int32"/>
+            </ComplexType>
+            <ComplexType Name="InfluencerEarningsKPIResult">
+                <Property Name="NAME" Type="Edm.String"/>
+                <Property Name="UOM" Type="Edm.String"/>
+                <Property Name="ACCRUED" Type="Edm.String"/>
+                <Property Name="REDEEMED" Type="Edm.String"/>
+            </ComplexType>
+            <ComplexType Name="InfluencerSchemeTargetKPIResult">
+                <Property Name="SCHEME_PARTICIPATION_TARGET" Type="Edm.String"/>
+            </ComplexType>
+            <ComplexType Name="GeneralValueType">
+                <Property Name="VALUE" Type="Edm.String"/>
+                <Property Name="IS_HL" Type="Edm.Boolean"/>
+            </ComplexType>
+            <ComplexType Name="GeneralNameValueType">
+                <Property Name="NAME" Type="Edm.String"/>
+                <Property Name="VALUE" Type="Edm.String"/>
+                <Property Name="IS_HL" Type="Edm.Boolean"/>
+            </ComplexType>
+            <ComplexType Name="SaleValueKPIResult">
+                <Property Name="NAME" Type="Edm.String"/>
+                <Property Name="CY" Type="TSIService.GeneralValueType"/>
+                <Property Name="LY" Type="TSIService.GeneralValueType"/>
+                <Property Name="GROWTH" Type="TSIService.GeneralValueType"/>
+            </ComplexType>
+            <ComplexType Name="OSODKPIResult">
+                <Property Name="NAME" Type="Edm.String"/>
+                <Property Name="MONTH_BEGINNING" Type="TSIService.GeneralValueType"/>
+                <Property Name="TILL_YESTERDAY" Type="TSIService.GeneralValueType"/>
+            </ComplexType>
+            <ComplexType Name="NewCCDKPIResult">
+                <Property Name="NAME" Type="Edm.String"/>
+                <Property Name="NOT_BILLED" Type="TSIService.GeneralValueType"/>
+                <Property Name="BILLED" Type="TSIService.GeneralValueType"/>
+            </ComplexType>
+            <ComplexType Name="TotalVisitsKPIResult">
+                <Property Name="NAME" Type="Edm.String"/>
+                <Property Name="TOTAL_NOS" Type="TSIService.GeneralValueType"/>
+                <Property Name="AVG_NOS" Type="TSIService.GeneralValueType"/>
+            </ComplexType>
+            <ComplexType Name="VisitsKPIResult">
+                <Property Name="NAME" Type="Edm.String"/>
+                <Property Name="TOTAL_NOS" Type="TSIService.GeneralValueType"/>
+                <Property Name="UNIQUE_NOS" Type="TSIService.GeneralValueType"/>
+            </ComplexType>
+            <ComplexType Name="MeetsConductedKPIResult">
+                <Property Name="NAME" Type="Edm.String"/>
+                <Property Name="NOS" Type="TSIService.GeneralValueType"/>
+            </ComplexType>
+            <ComplexType Name="NotVisitedKPIResult">
+                <Property Name="NAME" Type="Edm.String"/>
+                <Property Name="CUSTOMER_NOS" Type="TSIService.GeneralValueType"/>
+                <Property Name="SITE_NOS" Type="TSIService.GeneralValueType"/>
+            </ComplexType>
+            <ComplexType Name="CollectionKPIResult">
+                <Property Name="NAME" Type="Edm.String"/>
+                <Property Name="CY" Type="TSIService.GeneralValueType"/>
+            </ComplexType>
+            <ComplexType Name="ActiveDealerKPIResult">
+                <Property Name="NAME" Type="Edm.String"/>
+                <Property Name="PARTICIPATED" Type="TSIService.GeneralValueType"/>
+                <Property Name="NOT_PARTICIPATED" Type="TSIService.GeneralValueType"/>
+            </ComplexType>
+            <ComplexType Name="NDOKPIResult">
+                <Property Name="NAME" Type="Edm.String"/>
+                <Property Name="BILLED" Type="TSIService.GeneralValueType"/>
+                <Property Name="NOT_BILLED" Type="TSIService.GeneralValueType"/>
+            </ComplexType>
+            <ComplexType Name="BudgetKPIResult">
+                <Property Name="NAME" Type="Edm.String"/>
+                <Property Name="LACS" Type="TSIService.GeneralValueType"/>
+                <Property Name="LACS_ACHIEVEMENT" Type="TSIService.GeneralValueType"/>
+                <Property Name="KL" Type="TSIService.GeneralValueType"/>
+                <Property Name="KL_ACHIEVEMENT" Type="TSIService.GeneralValueType"/>
+            </ComplexType>
+            <ComplexType Name="YTDTrend">
+                <Property Name="NAME" Type="Edm.String"/>
+                <Property Name="VALUE" Type="Edm.Double"/>
+            </ComplexType>
+            <ComplexType Name="YTDTrendsKPIResult">
+                <Property Name="NAME" Type="Edm.String"/>
+                <Property Name="DATA" Type="Collection(TSIService.YTDTrend)" Nullable="false"/>
+            </ComplexType>
+            <ComplexType Name="CustomerODHLItem">
+                <Property Name="CUSTOMER_CODE" Type="Edm.String"/>
+                <Property Name="CUSTOMER_NAME" Type="Edm.String"/>
+                <Property Name="OS" Type="Edm.String"/>
+                <Property Name="OS60" Type="Edm.String"/>
+                <Property Name="MONTH_BEGINNING" Type="Edm.String"/>
+                <Property Name="CURRENT_OD" Type="Edm.String"/>
+                <Property Name="TODAY" Type="Edm.String"/>
+                <Property Name="TOMORROW" Type="Edm.String"/>
+                <Property Name="NEXT_3_DAYS" Type="Edm.String"/>
+                <Property Name="NEXT_5_DAYS" Type="Edm.String"/>
+                <Property Name="NEXT_10_DAYS" Type="Edm.String"/>
+            </ComplexType>
+            <ComplexType Name="CustomerODHLItemResult">
+                <Property Name="CUSTOMERS" Type="Collection(TSIService.CustomerODHLItem)" Nullable="false"/>
+                <Property Name="TOTAL_COUNT" Type="Edm.Int32"/>
+            </ComplexType>
+            <ComplexType Name="CustomerHLItem">
+                <Property Name="CUSTOMER_CODE" Type="Edm.String"/>
+                <Property Name="CUSTOMER_NAME" Type="Edm.String"/>
+                <Property Name="CEI" Type="Edm.String"/>
+                <Property Name="VALUE_MTD_TILL_YESTERDAY" Type="Edm.String"/>
+                <Property Name="VISITS_MTD_TILL_YESTERDAY" Type="Edm.String"/>
+                <Property Name="OD_YTD" Type="Edm.String"/>
+                <Property Name="OS_YTD" Type="Edm.String"/>
+                <Property Name="COLLECTION_MTD_TILL_YESTERDAY" Type="Edm.String"/>
+            </ComplexType>
+            <ComplexType Name="CustomerHLKPIResult">
+                <Property Name="CUSTOMERS" Type="Collection(TSIService.CustomerHLItem)" Nullable="false"/>
+                <Property Name="TOTAL_COUNT" Type="Edm.Int32"/>
+            </ComplexType>
+            <ComplexType Name="LookupListResult">
+                <Property Name="NAME" Type="Edm.String"/>
+                <Property Name="IS_SELECTED" Type="Edm.Boolean"/>
+                <Property Name="CODE" Type="Edm.String"/>
+                <Property Name="IS_VISIBLE" Type="Edm.Boolean"/>
+            </ComplexType>
+            <ComplexType Name="UserProfileResult">
+                <Property Name="FIRST_NAME" Type="Edm.String"/>
+                <Property Name="LAST_NAME" Type="Edm.String"/>
+                <Property Name="EMAIL" Type="Edm.String"/>
+                <Property Name="SALES_GROUP" Type="Edm.String"/>
+                <Property Name="PROFILE_IMAGE" Type="Edm.String"/>
+                <Property Name="ROLE_ID" Type="Edm.Int32"/>
+            </ComplexType>
+            <ComplexType Name="CustomerDetailsResult">
+                <Property Name="CUSTOMER_CODE" Type="Edm.String"/>
+                <Property Name="CUSTOMER_NAME" Type="Edm.String"/>
+                <Property Name="MOBILE_NO" Type="Edm.String"/>
+                <Property Name="NDO_DATE" Type="Edm.String"/>
+                <Property Name="LAST_VISIT_DATE" Type="Edm.String"/>
+                <Property Name="TOTAL_VISITS" Type="Edm.Int32"/>
+                <Property Name="CEI" Type="Edm.String"/>
+                <Property Name="LOS_SUPPLY" Type="Edm.String"/>
+                <Property Name="CSI" Type="Edm.String"/>
+                <Property Name="OPEN_CCD_CALLS" Type="Edm.String"/>
+                <Property Name="LAST_DEPOT_GIFT" Type="Edm.String"/>
+                <Property Name="TOWN_NAME" Type="Edm.String"/>
+                <Property Name="CCD_DATE" Type="Edm.String"/>
+                <Property Name="LAST_BILLING_DATE" Type="Edm.String"/>
+                <Property Name="CREDIT_LIMIT" Type="Edm.String"/>
+                <Property Name="LOS_CL" Type="Edm.String"/>
+                <Property Name="LAST_ACCOUNT_RECONCILIATION" Type="Edm.String"/>
+                <Property Name="DEALER_HEALTH_CARD" Type="Edm.String"/>
+                <Property Name="LAST_SHADE_CARD_MARKETING_MATERIAL_DATE" Type="Edm.String"/>
+            </ComplexType>
+            <ComplexType Name="CustomerFocusProductKPIResult">
+                <Property Name="NAME" Type="Edm.String"/>
+                <Property Name="CY_RS" Type="TSIService.GeneralValueType"/>
+                <Property Name="CY_KL" Type="TSIService.GeneralValueType"/>
+            </ComplexType>
+            <ComplexType Name="CustomerSchemeQualificationKPIResult">
+                <Property Name="NAME" Type="Edm.String"/>
+                <Property Name="NOS" Type="TSIService.GeneralValueType"/>
+            </ComplexType>
+            <ComplexType Name="AllCustomerItem">
+                <Property Name="CUSTOMER_CODE" Type="Edm.String"/>
+                <Property Name="CUSTOMER_NAME" Type="Edm.String"/>
+                <Property Name="MOBILE_NO" Type="Edm.String"/>
+                <Property Name="TOWN_NAME" Type="Edm.String"/>
+                <Property Name="NDO_DATE" Type="Edm.String"/>
+                <Property Name="LAST_VISIT_DATE" Type="Edm.String"/>
+                <Property Name="TOTAL_VISITS" Type="Edm.Int32"/>
+                <Property Name="CCD_DATE" Type="Edm.String"/>
+                <Property Name="LAST_BILLING_DATE" Type="Edm.String"/>
+            </ComplexType>
+            <ComplexType Name="AllCustomerListKPIResult">
+                <Property Name="CUSTOMERS" Type="Collection(TSIService.AllCustomerItem)" Nullable="false"/>
+                <Property Name="TOTAL_COUNT" Type="Edm.Int32"/>
+            </ComplexType>
+            <ComplexType Name="ProductTotalKPIResult">
+                <Property Name="VALUE" Type="TSIService.GeneralValueType"/>
+                <Property Name="VOLUME" Type="TSIService.GeneralValueType"/>
+            </ComplexType>
+            <ComplexType Name="ProductCategoryGroupListResult">
+                <Property Name="CATEGORY_CODE" Type="Edm.String"/>
+                <Property Name="CATEGORY" Type="Edm.String"/>
+                <Property Name="GROUP" Type="Edm.String"/>
+                <Property Name="IS_SELECTED" Type="Edm.Boolean"/>
+                <Property Name="IS_VISIBLE" Type="Edm.Boolean"/>
+            </ComplexType>
+            <ComplexType Name="CustomerProductParticipationKPIResult">
+                <Property Name="NAME" Type="Edm.String"/>
+                <Property Name="CY" Type="TSIService.GeneralValueType"/>
+                <Property Name="LY" Type="TSIService.GeneralValueType"/>
+            </ComplexType>
+            <ComplexType Name="ProductKPIResult">
+                <Property Name="CATEGORY_CODE" Type="Edm.String"/>
+                <Property Name="CATEGORY" Type="Edm.String"/>
+                <Property Name="GROUP" Type="Edm.String"/>
+                <Property Name="IS_VISIBLE" Type="Edm.Boolean"/>
+                <Property Name="KPIS" Type="Collection(TSIService.ProductKPIResult_KPIS)" Nullable="false"/>
+            </ComplexType>
+            <ComplexType Name="DGALeadsKPIResult_MTD">
+                <Property Name="GIVEN" Type="Edm.String"/>
+                <Property Name="CONVERTED" Type="Edm.String"/>
+            </ComplexType>
+            <ComplexType Name="DGALeadsKPIResult_YTD">
+                <Property Name="GIVEN" Type="Edm.String"/>
+                <Property Name="CONVERTED" Type="Edm.String"/>
+            </ComplexType>
+            <ComplexType Name="IncentiveCircularResult_PARAMTERS_TABLE">
+                <Property Name="VALUE_SALE" Type="TSIService.IncentiveCircularResult_PARAMTERS_TABLE_VALUE_SALE"/>
+                <Property Name="PREMIUM_EMULSION" Type="TSIService.IncentiveCircularResult_PARAMTERS_TABLE_PREMIUM_EMULSION"/>
+                <Property Name="PARTICIPATION" Type="TSIService.IncentiveCircularResult_PARAMTERS_TABLE_PARTICIPATION"/>
+            </ComplexType>
+            <ComplexType Name="IncentiveCircularResult_PARAMTERS_TABLE_VALUE_SALE">
+                <Property Name="NAME" Type="Edm.String"/>
+                <Property Name="UOM" Type="Edm.String"/>
+                <Property Name="LABEL_ROW1" Type="Edm.String"/>
+                <Property Name="LABEL_ROW2" Type="Edm.String"/>
+                <Property Name="ROWS" Type="Collection(TSIService.RowResult)" Nullable="false"/>
+            </ComplexType>
+            <ComplexType Name="IncentiveCircularResult_PARAMTERS_TABLE_PREMIUM_EMULSION">
+                <Property Name="NAME" Type="Edm.String"/>
+                <Property Name="UOM" Type="Edm.String"/>
+                <Property Name="LABEL_ROW1" Type="Edm.String"/>
+                <Property Name="LABEL_ROW2" Type="Edm.String"/>
+                <Property Name="ROWS" Type="Collection(TSIService.RowResult)" Nullable="false"/>
+            </ComplexType>
+            <ComplexType Name="IncentiveCircularResult_PARAMTERS_TABLE_PARTICIPATION">
+                <Property Name="NAME" Type="Edm.String"/>
+                <Property Name="UOM" Type="Edm.String"/>
+                <Property Name="LABEL_ROW1" Type="Edm.String"/>
+                <Property Name="LABEL_ROW2" Type="Edm.String"/>
+                <Property Name="ROWS" Type="Collection(TSIService.RowResult)" Nullable="false"/>
+            </ComplexType>
+            <ComplexType Name="IncentiveCircularResult_MONTHLY_TOPPINGS_TABLE">
+                <Property Name="NPP" Type="TSIService.IncentiveCircularResult_MONTHLY_TOPPINGS_TABLE_NPP"/>
+                <Property Name="WATER_PROOFING" Type="TSIService.IncentiveCircularResult_MONTHLY_TOPPINGS_TABLE_WATER_PROOFING"/>
+            </ComplexType>
+            <ComplexType Name="IncentiveCircularResult_MONTHLY_TOPPINGS_TABLE_NPP">
+                <Property Name="NAME" Type="Edm.String"/>
+                <Property Name="UOM" Type="Edm.String"/>
+                <Property Name="ROWS" Type="Collection(TSIService.LabelValueResult)" Nullable="false"/>
+            </ComplexType>
+            <ComplexType Name="IncentiveCircularResult_MONTHLY_TOPPINGS_TABLE_WATER_PROOFING">
+                <Property Name="NAME" Type="Edm.String"/>
+                <Property Name="UOM" Type="Edm.String"/>
+                <Property Name="ROWS" Type="Collection(TSIService.LabelValueResult)" Nullable="false"/>
+            </ComplexType>
+            <ComplexType Name="IncentiveCircularResult_CCD_TABLE">
+                <Property Name="NAME" Type="Edm.String"/>
+                <Property Name="UOM" Type="Edm.String"/>
+                <Property Name="NOTE" Type="Edm.String"/>
+                <Property Name="ROWS" Type="Collection(TSIService.LabelValueResult)" Nullable="false"/>
+            </ComplexType>
+            <ComplexType Name="IncentiveCircularResult_PAY_OUT_PROCESS">
+                <Property Name="POINTER1" Type="Edm.String"/>
+                <Property Name="INCENTIVE_EARNED_TABLE" Type="TSIService.IncentiveCircularResult_PAY_OUT_PROCESS_INCENTIVE_EARNED_TABLE"/>
+            </ComplexType>
+            <ComplexType Name="IncentiveCircularResult_PAY_OUT_PROCESS_INCENTIVE_EARNED_TABLE">
+                <Property Name="LABEL_COLUMN1" Type="Edm.String"/>
+                <Property Name="LABEL_COLUMN2" Type="Edm.String"/>
+                <Property Name="LABEL_COLUMN3" Type="Edm.String"/>
+                <Property Name="VALUE_COLUMN3" Type="Edm.String"/>
+                <Property Name="ROWS" Type="Collection(TSIService.ThreeColumnResult)" Nullable="false"/>
+            </ComplexType>
+            <ComplexType Name="IncentiveCircularResult_OD_AND_CEI_CORRECTION">
+                <Property Name="POINTER1" Type="Edm.String"/>
+                <Property Name="OD_MATRIX" Type="TSIService.IncentiveCircularResult_OD_AND_CEI_CORRECTION_OD_MATRIX"/>
+                <Property Name="SUB_POINTER3_A" Type="Edm.String"/>
+                <Property Name="SUB_POINTER3_B" Type="Edm.String"/>
+                <Property Name="SUB_POINTER3_C" Type="Edm.String"/>
+            </ComplexType>
+            <ComplexType Name="IncentiveCircularResult_OD_AND_CEI_CORRECTION_OD_MATRIX">
+                <Property Name="POINTER1" Type="Edm.String"/>
+                <Property Name="POINTER2" Type="Edm.String"/>
+                <Property Name="POINTER3" Type="Edm.String"/>
+                <Property Name="SUB_POINTER2_A" Type="Edm.String"/>
+                <Property Name="SUB_POINTER2_B" Type="Edm.String"/>
+                <Property Name="SUB_POINTER2_C" Type="Edm.String"/>
+                <Property Name="NOTE1" Type="Edm.String"/>
+                <Property Name="NOTE2" Type="Edm.String"/>
+                <Property Name="OD_TABLE1" Type="TSIService.IncentiveCircularResult_OD_AND_CEI_CORRECTION_OD_MATRIX_OD_TABLE1"/>
+                <Property Name="OD_TABLE2" Type="TSIService.IncentiveCircularResult_OD_AND_CEI_CORRECTION_OD_MATRIX_OD_TABLE2"/>
+                <Property Name="OD_TABLE3" Type="TSIService.IncentiveCircularResult_OD_AND_CEI_CORRECTION_OD_MATRIX_OD_TABLE3"/>
+            </ComplexType>
+            <ComplexType Name="IncentiveCircularResult_OD_AND_CEI_CORRECTION_OD_MATRIX_OD_TABLE1">
+                <Property Name="LABEL_COLUMN1" Type="Edm.String"/>
+                <Property Name="LABEL_COLUMN2" Type="Edm.String"/>
+                <Property Name="ROWS" Type="Collection(TSIService.TwoColumnResult)" Nullable="false"/>
+            </ComplexType>
+            <ComplexType Name="IncentiveCircularResult_OD_AND_CEI_CORRECTION_OD_MATRIX_OD_TABLE2">
+                <Property Name="LABEL_COLUMN1" Type="Edm.String"/>
+                <Property Name="LABEL_COLUMN2" Type="Edm.String"/>
+                <Property Name="ROWS" Type="Collection(TSIService.TwoColumnResult)" Nullable="false"/>
+            </ComplexType>
+            <ComplexType Name="IncentiveCircularResult_OD_AND_CEI_CORRECTION_OD_MATRIX_OD_TABLE3">
+                <Property Name="LABEL_COLUMN1" Type="Edm.String"/>
+                <Property Name="LABEL_COLUMN2" Type="Edm.String"/>
+                <Property Name="ROWS" Type="Collection(TSIService.TwoColumnResult)" Nullable="false"/>
+            </ComplexType>
+            <ComplexType Name="IncentiveCircularResult_PREMIUM_EMULSION_TABLE">
+                <Property Name="NAME" Type="Edm.String"/>
+                <Property Name="LABEL_COLUMN1" Type="Edm.String"/>
+                <Property Name="LABEL_COLUMN2" Type="Edm.String"/>
+                <Property Name="ROWS" Type="Collection(TSIService.TwoColumnResult)" Nullable="false"/>
+            </ComplexType>
+            <ComplexType Name="IncentiveCircularResult_OTHER_IMPORTANT_TERMS">
+                <Property Name="NAME" Type="Edm.String"/>
+                <Property Name="POINTER1" Type="Edm.String"/>
+                <Property Name="POINTER2" Type="Edm.String"/>
+                <Property Name="POINTER3" Type="Edm.String"/>
+                <Property Name="TERMS_TABLE" Type="TSIService.IncentiveCircularResult_OTHER_IMPORTANT_TERMS_TERMS_TABLE"/>
+            </ComplexType>
+            <ComplexType Name="IncentiveCircularResult_OTHER_IMPORTANT_TERMS_TERMS_TABLE">
+                <Property Name="NAME" Type="Edm.String"/>
+                <Property Name="LABEL_COLUMN1" Type="Edm.String"/>
+                <Property Name="LABEL_COLUMN2" Type="Edm.String"/>
+                <Property Name="ROWS" Type="Collection(TSIService.TwoColumnResult)" Nullable="false"/>
+            </ComplexType>
+            <ComplexType Name="SchemeKPIResult_KPIS">
+                <Property Name="NAME" Type="Edm.String"/>
+                <Property Name="UOM" Type="Edm.String"/>
+                <Property Name="TARGET" Type="Edm.String"/>
+                <Property Name="MTD" Type="TSIService.GeneralValueType"/>
+                <Property Name="YTD" Type="TSIService.GeneralValueType"/>
+            </ComplexType>
+            <ComplexType Name="InfluencerPurchaseVolKPIResult_PRODUCTS">
+                <Property Name="NAME" Type="Edm.String"/>
+                <Property Name="MTD" Type="Edm.String"/>
+                <Property Name="YTD" Type="Edm.String"/>
+            </ComplexType>
+            <ComplexType Name="ProductKPIResult_KPIS">
+                <Property Name="NAME" Type="Edm.String"/>
+                <Property Name="BUDGET" Type="TSIService.GeneralValueType"/>
+                <Property Name="ACHIEVEMENT" Type="TSIService.GeneralValueType"/>
+                <Property Name="LY" Type="TSIService.GeneralValueType"/>
+                <Property Name="CY" Type="TSIService.GeneralValueType"/>
+                <Property Name="GROWTH" Type="TSIService.GeneralValueType"/>
+            </ComplexType>
+            <Function Name="getASMUserList" IsBound="false" IsComposable="false">
+                <Parameter Name="searchText" Type="Edm.String"/>
+                <ReturnType Type="TSIService.ASMUserListKPIResult"/>
+            </Function>
+            <Function Name="getSalesOfficesByASMRSMList" IsBound="false" IsComposable="false">
+                <Parameter Name="searchText" Type="Edm.String"/>
+                <ReturnType Type="TSIService.SalesOfficeKPIResult"/>
+            </Function>
+            <Function Name="getDepotByRSM" IsBound="false" IsComposable="false">
+                <Parameter Name="searchText" Type="Edm.String"/>
+                <ReturnType Type="TSIService.DepotKPIResult"/>
+            </Function>
+            <Function Name="getTSIUsersBySalesOfficeList" IsBound="false" IsComposable="false">
+                <Parameter Name="salesGroup" Type="Edm.String"/>
+                <Parameter Name="searchText" Type="Edm.String"/>
+                <Parameter Name="sortOrder" Type="Edm.String"/>
+                <Parameter Name="sortColumn" Type="Edm.String"/>
+                <Parameter Name="topRec" Type="Edm.Int32"/>
+                <Parameter Name="skipRec" Type="Edm.Int32"/>
+                <ReturnType Type="TSIService.TSIUserListKPIResult"/>
+            </Function>
+            <Function Name="getInfluencerBusinessGenerationKPI" IsBound="false" IsComposable="false">
+                <Parameter Name="salesGroup" Type="Edm.String"/>
+                <ReturnType Type="Collection(TSIService.DGABusinessGenerationKPIResult)" Nullable="false"/>
+            </Function>
+            <Function Name="getInfluencerBusinessGenerationSummaryKPI" IsBound="false" IsComposable="false">
+                <Parameter Name="salesGroup" Type="Edm.String"/>
+                <ReturnType Type="Collection(TSIService.DGABusinessGenerationSummaryKPIResult)" Nullable="false"/>
+            </Function>
+            <Function Name="getInfluencerLeadsKPI" IsBound="false" IsComposable="false">
+                <Parameter Name="influencerID" Type="Edm.Int32"/>
+                <ReturnType Type="Collection(TSIService.DGALeadsKPIResult)" Nullable="false"/>
+            </Function>
+            <Function Name="getInfluencerSitesKPI" IsBound="false" IsComposable="false">
+                <Parameter Name="influencerID" Type="Edm.Int32"/>
+                <ReturnType Type="Collection(TSIService.DGASitesKPIResult)" Nullable="false"/>
+            </Function>
+            <Function Name="getDGADealerLeadCounts" IsBound="false" IsComposable="false">
+                <Parameter Name="salesGroup" Type="Edm.String"/>
+                <ReturnType Type="Collection(TSIService.DGADumpKPIResult)" Nullable="false"/>
+            </Function>
+            <Function Name="getDGATotalMRValue" IsBound="false" IsComposable="false">
+                <Parameter Name="salesGroup" Type="Edm.String"/>
+                <Parameter Name="customerCode" Type="Edm.String"/>
+                <ReturnType Type="Collection(TSIService.DGADumpKPIResult)" Nullable="false"/>
+            </Function>
+            <Function Name="getDGATotalMRVolume" IsBound="false" IsComposable="false">
+                <Parameter Name="salesGroup" Type="Edm.String"/>
+                <Parameter Name="customerCode" Type="Edm.String"/>
+                <ReturnType Type="Collection(TSIService.DGADumpKPIResult)" Nullable="false"/>
+            </Function>
+            <Function Name="getIncentiveKPIs" IsBound="false" IsComposable="false">
+                <Parameter Name="salesGroup" Type="Edm.String"/>
+                <ReturnType Type="TSIService.IncentiveResult"/>
+            </Function>
+            <Function Name="getIncentiveCircularDetails" IsBound="false" IsComposable="false">
+                <ReturnType Type="TSIService.IncentiveCircularResult"/>
+            </Function>
+            <Function Name="getInfluencerLoyaltyParticipantKPI" IsBound="false" IsComposable="false">
+                <Parameter Name="salesGroup" Type="Edm.String"/>
+                <ReturnType Type="Collection(TSIService.PragatiLoyaltyParticipantKPIResult)" Nullable="false"/>
+            </Function>
+            <Function Name="getInfluencerList" IsBound="false" IsComposable="false">
+                <Parameter Name="salesGroup" Type="Edm.String"/>
+                <Parameter Name="searchText" Type="Edm.String"/>
+                <Parameter Name="topRec" Type="Edm.Int32"/>
+                <Parameter Name="skipRec" Type="Edm.Int32"/>
+                <ReturnType Type="TSIService.InfluencerListKPIResult"/>
+            </Function>
+            <Function Name="getInfluencerHLKPIs" IsBound="false" IsComposable="false">
+                <Parameter Name="salesGroup" Type="Edm.String"/>
+                <Parameter Name="kpiType" Type="Edm.String"/>
+                <Parameter Name="columnHeader" Type="Edm.String"/>
+                <Parameter Name="rowHeader" Type="Edm.String"/>
+                <Parameter Name="searchText" Type="Edm.String"/>
+                <Parameter Name="schemeCode" Type="Edm.String"/>
+                <Parameter Name="sortOrder" Type="Edm.String"/>
+                <Parameter Name="sortColumn" Type="Edm.String"/>
+                <Parameter Name="topRec" Type="Edm.Int32"/>
+                <Parameter Name="skipRec" Type="Edm.Int32"/>
+                <ReturnType Type="TSIService.InfluencerHLKPIResult"/>
+            </Function>
+            <Function Name="getInfluencerSchemeKPIs" IsBound="false" IsComposable="false">
+                <Parameter Name="salesGroup" Type="Edm.String"/>
+                <ReturnType Type="Collection(TSIService.SchemeKPIResult)" Nullable="false"/>
+            </Function>
+            <Function Name="getInfluencerDetailKPIs" IsBound="false" IsComposable="false">
+                <Parameter Name="influencerID" Type="Edm.Int32"/>
+                <ReturnType Type="TSIService.InfluencerDetailKPIResult"/>
+            </Function>
+            <Function Name="getInfluencerPointsDetailKPIs" IsBound="false" IsComposable="false">
+                <Parameter Name="influencerID" Type="Edm.Int32"/>
+                <ReturnType Type="Collection(TSIService.InfluencerPointsDetailKPIResult)" Nullable="false"/>
+            </Function>
+            <Function Name="getProductCategoryList" IsBound="false" IsComposable="false">
+                <ReturnType Type="Collection(TSIService.ProductCategoryKPIResult)" Nullable="false"/>
+            </Function>
+            <Function Name="getInfluencerPurchaseVolKPIs" IsBound="false" IsComposable="false">
+                <Parameter Name="influencerID" Type="Edm.Int32"/>
+                <Parameter Name="categoryCode" Type="Edm.String"/>
+                <ReturnType Type="TSIService.InfluencerPurchaseVolKPIResult"/>
+            </Function>
+            <Function Name="getInfluencerEligibleSchemeKPI" IsBound="false" IsComposable="false">
+                <Parameter Name="influencerID" Type="Edm.Int32"/>
+                <ReturnType Type="Collection(TSIService.InfluencerEligibleSchemeKPIResult)" Nullable="false"/>
+            </Function>
+            <Function Name="getInfluencerSchemeDetailsKPI" IsBound="false" IsComposable="false">
+                <Parameter Name="schemeCode" Type="Edm.String"/>
+                <Parameter Name="influencerID" Type="Edm.Int32"/>
+                <ReturnType Type="TSIService.InfluencerSchemeDetailsKPIResult"/>
+            </Function>
+            <Function Name="getInfluencerEarningsKPI" IsBound="false" IsComposable="false">
+                <Parameter Name="influencerID" Type="Edm.Int32"/>
+                <ReturnType Type="Collection(TSIService.InfluencerEarningsKPIResult)" Nullable="false"/>
+            </Function>
+            <Function Name="getInfluencerSchemeTargetKPI" IsBound="false" IsComposable="false">
+                <Parameter Name="salesGroup" Type="Edm.String"/>
+                <ReturnType Type="TSIService.InfluencerSchemeTargetKPIResult"/>
+            </Function>
+            <Function Name="getUserProfile" IsBound="false" IsComposable="false">
+                <Parameter Name="email" Type="Edm.String"/>
+                <Parameter Name="appVersion" Type="Edm.String"/>
+                <ReturnType Type="TSIService.UserProfileResult"/>
+            </Function>
+            <Function Name="getUpcomingODKPIs" IsBound="false" IsComposable="false">
+                <Parameter Name="salesGroup" Type="Edm.String"/>
+                <ReturnType Type="Collection(TSIService.CollectionKPIResult)" Nullable="false"/>
+            </Function>
+            <Function Name="getCollectionKPIs" IsBound="false" IsComposable="false">
+                <Parameter Name="salesGroup" Type="Edm.String"/>
+                <ReturnType Type="Collection(TSIService.CollectionKPIResult)" Nullable="false"/>
+            </Function>
+            <Function Name="getSalesValueKPIs" IsBound="false" IsComposable="false">
+                <Parameter Name="salesGroup" Type="Edm.String"/>
+                <ReturnType Type="Collection(TSIService.SaleValueKPIResult)" Nullable="false"/>
+            </Function>
+            <Function Name="getVolumeKPIs" IsBound="false" IsComposable="false">
+                <Parameter Name="salesGroup" Type="Edm.String"/>
+                <ReturnType Type="Collection(TSIService.SaleValueKPIResult)" Nullable="false"/>
+            </Function>
+            <Function Name="getActiveDealerKPIs" IsBound="false" IsComposable="false">
+                <Parameter Name="salesGroup" Type="Edm.String"/>
+                <ReturnType Type="Collection(TSIService.ActiveDealerKPIResult)" Nullable="false"/>
+            </Function>
+            <Function Name="getBelowThresholdKPIs" IsBound="false" IsComposable="false">
+                <Parameter Name="salesGroup" Type="Edm.String"/>
+                <ReturnType Type="Collection(TSIService.CollectionKPIResult)" Nullable="false"/>
+            </Function>
+            <Function Name="getBudgetKPIs" IsBound="false" IsComposable="false">
+                <Parameter Name="salesGroup" Type="Edm.String"/>
+                <ReturnType Type="Collection(TSIService.BudgetKPIResult)" Nullable="false"/>
+            </Function>
+            <Function Name="getNewCCDKPIs" IsBound="false" IsComposable="false">
+                <Parameter Name="salesGroup" Type="Edm.String"/>
+                <ReturnType Type="Collection(TSIService.NewCCDKPIResult)" Nullable="false"/>
+            </Function>
+            <Function Name="getNewNDOKPIs" IsBound="false" IsComposable="false">
+                <Parameter Name="salesGroup" Type="Edm.String"/>
+                <ReturnType Type="Collection(TSIService.NDOKPIResult)" Nullable="false"/>
+            </Function>
+            <Function Name="getOSODKPIs" IsBound="false" IsComposable="false">
+                <Parameter Name="salesGroup" Type="Edm.String"/>
+                <ReturnType Type="Collection(TSIService.OSODKPIResult)" Nullable="false"/>
+            </Function>
+            <Function Name="getOverallVisitsKPIs" IsBound="false" IsComposable="false">
+                <Parameter Name="salesGroup" Type="Edm.String"/>
+                <ReturnType Type="Collection(TSIService.TotalVisitsKPIResult)" Nullable="false"/>
+            </Function>
+            <Function Name="getSiteInfluencerVisitsKPIs" IsBound="false" IsComposable="false">
+                <Parameter Name="salesGroup" Type="Edm.String"/>
+                <ReturnType Type="Collection(TSIService.VisitsKPIResult)" Nullable="false"/>
+            </Function>
+            <Function Name="getCustomerProspectVisitsKPIs" IsBound="false" IsComposable="false">
+                <Parameter Name="salesGroup" Type="Edm.String"/>
+                <ReturnType Type="Collection(TSIService.VisitsKPIResult)" Nullable="false"/>
+            </Function>
+            <Function Name="getMeetsConductedKPIs" IsBound="false" IsComposable="false">
+                <Parameter Name="salesGroup" Type="Edm.String"/>
+                <ReturnType Type="Collection(TSIService.MeetsConductedKPIResult)" Nullable="false"/>
+            </Function>
+            <Function Name="getNotVisitedKPIs" IsBound="false" IsComposable="false">
+                <Parameter Name="salesGroup" Type="Edm.String"/>
+                <ReturnType Type="Collection(TSIService.NotVisitedKPIResult)" Nullable="false"/>
+            </Function>
+            <Function Name="getYTDTrendsKPIs" IsBound="false" IsComposable="false">
+                <Parameter Name="salesGroup" Type="Edm.String"/>
+                <ReturnType Type="Collection(TSIService.YTDTrendsKPIResult)" Nullable="false"/>
+            </Function>
+            <Function Name="getTownList" IsBound="false" IsComposable="false">
+                <Parameter Name="salesGroup" Type="Edm.String"/>
+                <ReturnType Type="Collection(TSIService.LookupListResult)" Nullable="false"/>
+            </Function>
+            <Function Name="getCustomerList" IsBound="false" IsComposable="false">
+                <Parameter Name="salesGroup" Type="Edm.String"/>
+                <ReturnType Type="Collection(TSIService.LookupListResult)" Nullable="false"/>
+            </Function>
+            <Action Name="getCustomerODHLKPIs" IsBound="false">
+                <Parameter Name="salesGroup" Type="Edm.String"/>
+                <Parameter Name="kpiType" Type="Edm.String"/>
+                <Parameter Name="columnHeader" Type="Edm.String"/>
+                <Parameter Name="rowHeader" Type="Edm.String"/>
+                <Parameter Name="townName" Type="Edm.String"/>
+                <Parameter Name="customerCode" Type="Edm.String"/>
+                <Parameter Name="customerName" Type="Edm.String"/>
+                <Parameter Name="productCategory" Type="Edm.String"/>
+                <Parameter Name="productGroup" Type="Edm.String"/>
+                <Parameter Name="sortOrder" Type="Edm.String"/>
+                <Parameter Name="sortColumn" Type="Edm.String"/>
+                <Parameter Name="topRec" Type="Edm.Int32"/>
+                <Parameter Name="skipRec" Type="Edm.Int32"/>
+                <ReturnType Type="TSIService.CustomerODHLItemResult"/>
+            </Action>
+            <Action Name="getCustomerHLKPIs" IsBound="false">
+                <Parameter Name="salesGroup" Type="Edm.String"/>
+                <Parameter Name="kpiType" Type="Edm.String"/>
+                <Parameter Name="columnHeader" Type="Edm.String"/>
+                <Parameter Name="rowHeader" Type="Edm.String"/>
+                <Parameter Name="townName" Type="Edm.String"/>
+                <Parameter Name="customerCode" Type="Edm.String"/>
+                <Parameter Name="customerName" Type="Edm.String"/>
+                <Parameter Name="productCategory" Type="Edm.String"/>
+                <Parameter Name="productGroup" Type="Edm.String"/>
+                <Parameter Name="sortOrder" Type="Edm.String"/>
+                <Parameter Name="sortColumn" Type="Edm.String"/>
+                <Parameter Name="topRec" Type="Edm.Int32"/>
+                <Parameter Name="skipRec" Type="Edm.Int32"/>
+                <ReturnType Type="TSIService.CustomerHLKPIResult"/>
+            </Action>
+            <Function Name="getCustomerUpcomingODKPIs" IsBound="false" IsComposable="false">
+                <Parameter Name="salesGroup" Type="Edm.String"/>
+                <Parameter Name="customerCode" Type="Edm.String"/>
+                <Parameter Name="customerName" Type="Edm.String"/>
+                <ReturnType Type="Collection(TSIService.CollectionKPIResult)" Nullable="false"/>
+            </Function>
+            <Function Name="getCustomerCollectionKPIs" IsBound="false" IsComposable="false">
+                <Parameter Name="salesGroup" Type="Edm.String"/>
+                <Parameter Name="customerCode" Type="Edm.String"/>
+                <Parameter Name="customerName" Type="Edm.String"/>
+                <ReturnType Type="Collection(TSIService.CollectionKPIResult)" Nullable="false"/>
+            </Function>
+            <Function Name="getCustomerValueKPIs" IsBound="false" IsComposable="false">
+                <Parameter Name="salesGroup" Type="Edm.String"/>
+                <Parameter Name="customerCode" Type="Edm.String"/>
+                <Parameter Name="customerName" Type="Edm.String"/>
+                <ReturnType Type="Collection(TSIService.SaleValueKPIResult)" Nullable="false"/>
+            </Function>
+            <Function Name="getCustomerVolumeKPIs" IsBound="false" IsComposable="false">
+                <Parameter Name="salesGroup" Type="Edm.String"/>
+                <Parameter Name="customerCode" Type="Edm.String"/>
+                <Parameter Name="customerName" Type="Edm.String"/>
+                <ReturnType Type="Collection(TSIService.SaleValueKPIResult)" Nullable="false"/>
+            </Function>
+            <Function Name="getCustomerParticipationKPIs" IsBound="false" IsComposable="false">
+                <Parameter Name="salesGroup" Type="Edm.String"/>
+                <Parameter Name="customerCode" Type="Edm.String"/>
+                <Parameter Name="customerName" Type="Edm.String"/>
+                <ReturnType Type="Collection(TSIService.CollectionKPIResult)" Nullable="false"/>
+            </Function>
+            <Function Name="getCustomerFocusProductKPIs" IsBound="false" IsComposable="false">
+                <Parameter Name="salesGroup" Type="Edm.String"/>
+                <Parameter Name="customerCode" Type="Edm.String"/>
+                <Parameter Name="customerName" Type="Edm.String"/>
+                <ReturnType Type="Collection(TSIService.CustomerFocusProductKPIResult)" Nullable="false"/>
+            </Function>
+            <Function Name="getCustomerCNEarnedKPIs" IsBound="false" IsComposable="false">
+                <Parameter Name="salesGroup" Type="Edm.String"/>
+                <Parameter Name="customerCode" Type="Edm.String"/>
+                <Parameter Name="customerName" Type="Edm.String"/>
+                <ReturnType Type="Collection(TSIService.CollectionKPIResult)" Nullable="false"/>
+            </Function>
+            <Function Name="getCustomerSchemeQualificationKPIs" IsBound="false" IsComposable="false">
+                <Parameter Name="salesGroup" Type="Edm.String"/>
+                <Parameter Name="customerCode" Type="Edm.String"/>
+                <Parameter Name="customerName" Type="Edm.String"/>
+                <ReturnType Type="Collection(TSIService.CustomerSchemeQualificationKPIResult)" Nullable="false"/>
+            </Function>
+            <Function Name="getCustomerOSODKPIs" IsBound="false" IsComposable="false">
+                <Parameter Name="salesGroup" Type="Edm.String"/>
+                <Parameter Name="customerCode" Type="Edm.String"/>
+                <Parameter Name="customerName" Type="Edm.String"/>
+                <ReturnType Type="Collection(TSIService.OSODKPIResult)" Nullable="false"/>
+            </Function>
+            <Function Name="getCustomerVisitsKPIs" IsBound="false" IsComposable="false">
+                <Parameter Name="salesGroup" Type="Edm.String"/>
+                <Parameter Name="customerCode" Type="Edm.String"/>
+                <Parameter Name="customerName" Type="Edm.String"/>
+                <ReturnType Type="Collection(TSIService.TotalVisitsKPIResult)" Nullable="false"/>
+            </Function>
+            <Function Name="getCustomerDetails" IsBound="false" IsComposable="false">
+                <Parameter Name="customerCode" Type="Edm.String"/>
+                <Parameter Name="dateType" Type="Edm.String"/>
+                <Parameter Name="startDate" Type="Edm.String"/>
+                <Parameter Name="endDate" Type="Edm.String"/>
+                <ReturnType Type="TSIService.CustomerDetailsResult"/>
+            </Function>
+            <Function Name="getAllCustomerListKPI" IsBound="false" IsComposable="false">
+                <Parameter Name="salesGroup" Type="Edm.String"/>
+                <Parameter Name="customerCode" Type="Edm.String"/>
+                <Parameter Name="sortOrder" Type="Edm.String"/>
+                <Parameter Name="sortColumn" Type="Edm.String"/>
+                <Parameter Name="topRec" Type="Edm.Int32"/>
+                <Parameter Name="skipRec" Type="Edm.Int32"/>
+                <ReturnType Type="TSIService.AllCustomerListKPIResult"/>
+            </Function>
+            <Function Name="getProductCategoryGroupList" IsBound="false" IsComposable="false">
+                <Parameter Name="salesGroup" Type="Edm.String"/>
+                <ReturnType Type="Collection(TSIService.ProductCategoryGroupListResult)" Nullable="false"/>
+            </Function>
+            <Function Name="getProductTotalKPIs" IsBound="false" IsComposable="false">
+                <Parameter Name="salesGroup" Type="Edm.String"/>
+                <Parameter Name="productCategory" Type="Edm.String"/>
+                <Parameter Name="productGroup" Type="Edm.String"/>
+                <ReturnType Type="TSIService.ProductTotalKPIResult"/>
+            </Function>
+            <Function Name="getProductKPIs" IsBound="false" IsComposable="false">
+                <Parameter Name="salesGroup" Type="Edm.String"/>
+                <Parameter Name="productCategory" Type="Edm.String"/>
+                <Parameter Name="productGroup" Type="Edm.String"/>
+                <ReturnType Type="Collection(TSIService.ProductKPIResult)" Nullable="false"/>
+            </Function>
+            <Function Name="getCustomerProductValueKPIs" IsBound="false" IsComposable="false">
+                <Parameter Name="salesGroup" Type="Edm.String"/>
+                <Parameter Name="customerCode" Type="Edm.String"/>
+                <Parameter Name="productCategory" Type="Edm.String"/>
+                <Parameter Name="productGroup" Type="Edm.String"/>
+                <ReturnType Type="Collection(TSIService.SaleValueKPIResult)" Nullable="false"/>
+            </Function>
+            <Function Name="getCustomerProductVolumeKPIs" IsBound="false" IsComposable="false">
+                <Parameter Name="salesGroup" Type="Edm.String"/>
+                <Parameter Name="customerCode" Type="Edm.String"/>
+                <Parameter Name="productCategory" Type="Edm.String"/>
+                <Parameter Name="productGroup" Type="Edm.String"/>
+                <ReturnType Type="Collection(TSIService.SaleValueKPIResult)" Nullable="false"/>
+            </Function>
+            <Function Name="getCustomerProductParticipationKPIs" IsBound="false" IsComposable="false">
+                <Parameter Name="salesGroup" Type="Edm.String"/>
+                <Parameter Name="customerCode" Type="Edm.String"/>
+                <Parameter Name="productCategory" Type="Edm.String"/>
+                <Parameter Name="productGroup" Type="Edm.String"/>
+                <ReturnType Type="Collection(TSIService.CustomerProductParticipationKPIResult)" Nullable="false"/>
+            </Function>
+            <Annotations Target="TSIService.user/CREATED_AT">
+                <Annotation Term="Core.Computed" Bool="true"/>
+            </Annotations>
+            <Annotations Target="TSIService.user/UPDATED_AT">
+                <Annotation Term="Core.Computed" Bool="true"/>
+            </Annotations>
+            <Annotations Target="TSIService.USER_SALES_GROUP_MAP/CREATED_AT">
+                <Annotation Term="Core.Computed" Bool="true"/>
+            </Annotations>
+            <Annotations Target="TSIService.USER_SALES_GROUP_MAP/UPDATED_AT">
+                <Annotation Term="Core.Computed" Bool="true"/>
+            </Annotations>
+            <Annotations Target="TSIService.MAP_USER_ROLE/CREATED_AT">
+                <Annotation Term="Core.Computed" Bool="true"/>
+            </Annotations>
+            <Annotations Target="TSIService.MAP_USER_ROLE/UPDATED_AT">
+                <Annotation Term="Core.Computed" Bool="true"/>
+            </Annotations>
+        </Schema>
+    </edmx:DataServices>
+</edmx:Edmx>

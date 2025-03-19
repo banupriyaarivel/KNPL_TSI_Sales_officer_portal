@@ -1,0 +1,180 @@
+<mvc:View
+    displayBlock="true"
+    controllerName="knplsalesofficersportal.controller.Groups"
+    height="100%"
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns="sap.f"
+    xmlns:m="sap.m"
+>
+    <!-- User Sales Group Dynamic Page -->
+    <DynamicPage toggleHeaderOnTitleClick="false">
+        <!-- DynamicPage Title -->
+        <title>
+            <DynamicPageTitle>
+                <heading>
+                    <m:FlexBox
+                        wrap="Wrap"
+                        fitContainer="true"
+                        width="100%"
+                        alignItems="Center"
+                        justifyContent="SpaceBetween"
+                    >
+                        <m:Title
+                            text="Sales Group ({= ${USERS_DATA>SALES_GROUPS/0/SALES_GROUP} ? ${USERS_DATA>SALES_GROUPS/0/SALES_GROUP} : 'N/A'})"
+                            wrapping="false"
+                            class="sapUiTinyMarginEnd"
+                        />
+                    </m:FlexBox>
+                </heading>
+            </DynamicPageTitle>
+        </title>
+
+        <!-- DynamicPage Content -->
+        <content>
+            <!-- VBox for RSM Sales Group -->
+            <m:VBox>
+            <m:VBox visible="{listToggle>/RSMListVisible}" id="RSMListofSG">
+             <!-- List of ASM Sales Groups -->
+             <m:Text text="ASM Sales Groups" class="sapUiSmallMargin TextStyle"></m:Text>
+             <m:ScrollContainer
+                                width="100%"
+                                height="250px"
+                                horizontal="false"
+                                vertical="true"
+                                >
+                <m:List
+                    id="listASM"
+                    noDataText="No ASM Sales Groups"
+                    items="{
+                        path: 'USERS_DATA>RSM',
+                        sorter: {
+                            path: 'ASMUNIQUE_SG',
+                            descending: false,
+                            group: true
+                        }
+                    }"
+                >
+                    <m:items>
+                        <m:StandardListItem
+                            title="{USERS_DATA>ASMUNIQUE_SG}"
+                            visible="false"
+                        />
+                    </m:items>
+                </m:List>
+                </m:ScrollContainer>
+
+                <!-- Spacer -->
+                <m:ToolbarSeparator />
+
+                <!-- List of TSI Sales Groups -->
+                <m:Text text="TSI Sales Groups" class="sapUiSmallMargin TextStyle"></m:Text>
+                <m:ScrollContainer
+                                width="100%"
+                                height="250px"
+                                horizontal="false"
+                                vertical="true"
+                                >
+                <m:List
+                    id="listTSI"
+                    noDataText="No TSI Sales Groups"
+                    items="{
+                        path: 'USERS_DATA>RSM',
+                        sorter: {
+                            path: 'VKGRP',
+                            descending: false,
+                            group: true
+                        }
+                    }"
+                >
+                    <m:items>
+                        <m:StandardListItem
+                            title="{USERS_DATA>VKGRP}"
+                            visible="false"
+                        />
+                    </m:items>
+                </m:List>
+                </m:ScrollContainer>
+
+            </m:VBox>
+            <!-- VBox for TSI sales groups of ASM -->
+            <m:VBox visible="{listToggle>/ASMListVisible}" id="ASMListofSG">
+            <m:Text text="TSI Sales Groups" class="sapUiSmallMargin TextStyle"></m:Text>
+            <m:List
+                    id="ASMlistofTSI"
+                    noDataText="No TSI Sales Groups"
+                    growing="true"
+                    growingThreshold="10"
+                    items="{
+                        path: 'USERS_DATA>ASM',
+                        sorter: {
+                            path: 'VKGRP',
+                            descending: false,
+                            group: true
+                        }
+                    }"
+                >
+                    <m:items>
+                        <m:StandardListItem
+                            title="{USERS_DATA>VKGRP}"
+                            visible="false"
+                        />
+                    </m:items>
+                </m:List>
+
+            </m:VBox>
+            <m:VBox visible="{listToggle>/TSIListVisible}" id="TSIListofSG">
+            <m:Text text="RSM Sales Group" class="sapUiSmallMargin TextStyle"></m:Text>
+            <m:List
+                    id="TSIlistofRSM"
+                    noDataText="No RSM Sales Groups"
+                    growing="true"
+                    growingThreshold="10"
+                    items="{
+                        path: 'USERS_DATA>TSI',
+                        sorter: {
+                            path: 'DSMUNIQUE_SG',
+                            descending: false,
+                            group: true
+                        }
+                    }"
+                >
+                    <m:items>
+                        <m:StandardListItem
+                            title="{USERS_DATA>DSMUNIQUE_SG}"
+                            visible="false"
+                        />
+                    </m:items>
+                </m:List>
+
+                 <!-- Spacer -->
+                <m:ToolbarSeparator />
+                <m:Text text="ASM Sales Group" class="sapUiSmallMargin TextStyle"></m:Text>
+
+                <m:List
+                    id="TSilistofASM"
+                    noDataText="No ASM Sales Groups"
+                    growing="true"
+                    growingThreshold="10"
+                    items="{
+                        path: 'USERS_DATA>TSI',
+                        sorter: {
+                            path: 'ASMUNIQUE_SG',
+                            descending: false,
+                            group: true
+                        }
+                    }"
+                >
+                    <m:items>
+                        <m:StandardListItem
+                            title="{USERS_DATA>ASMUNIQUE_SG}"
+                            visible="false"
+                        />
+                    </m:items>
+                </m:List>
+
+
+            </m:VBox>
+            </m:VBox>
+        </content>
+    </DynamicPage>
+</mvc:View>

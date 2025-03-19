@@ -1,0 +1,71 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core">
+    <Dialog
+        id="tsiAssignDialog"
+        title="Select TSI Employees"
+        >
+        <content>
+            <VBox>
+                <!-- Search Bar -->
+                <Toolbar>
+                    <ToolbarSpacer />
+                    <SearchField
+                        id="tsisearchField"
+                        width="50%"
+                        placeholder="Search by Name or ID"
+                        search=".onSearch" />
+                </Toolbar>
+                
+                <!-- Table for TSI map to ASM and RSM -->
+                <Table
+                    id="tsimultiSelectTable"
+                    mode="MultiSelect"
+                    items = "{ 
+                    path : 'USERS_DATA>/TSIUsers'
+                     }"
+
+                    visible="{tAssignSections>/RsmUserSection}"
+                    
+                    >
+                    <columns>
+                        <Column>
+                            <Text text="Emplyee Code" />
+                        </Column>
+                        <Column>
+                            <Text text="Name" />
+                        </Column>
+                        <Column>
+                            <Text text="Role" />
+                        </Column>
+                        <Column>
+                            <Text text="Sales group Id" />
+                        </Column>
+                    </columns>
+                    <items>
+                        <ColumnListItem>
+                            <cells>
+                                <Text text="{USERS_DATA>EMPLOYEE_CODE}" />
+                                <Text text="{USERS_DATA>FIRST_NAME}" />
+                                <!-- <Text text="{= ${USERS_DATA>ROLE_ID} === 3 ? 'TSI' : '' }"/> -->
+                                <Text text="{USERS_DATA>ROLE_ID}"></Text>
+                                <Text text="{USERS_DATA>SALES_GROUP}" />
+                            </cells>
+                        </ColumnListItem>
+                    </items>
+                </Table>
+
+                <!-- Table for ASM map to RSM User -->
+                
+            </VBox>
+        </content>
+        <buttons>
+            <Button
+                text="Save"
+                type="Accept"
+                press=".onTsiSave" />
+            <Button
+                text="Close"
+                type="Reject"
+                press=".onTsiClose" />
+        </buttons>
+    </Dialog>
+</core:FragmentDefinition>

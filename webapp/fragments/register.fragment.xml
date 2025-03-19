@@ -1,0 +1,208 @@
+<core:FragmentDefinition
+    xmlns="sap.m"
+    xmlns:f="sap.ui.layout.form"
+    xmlns:core="sap.ui.core"
+    xmlns:mdc="sap.ui.mdc"
+>
+    <Dialog
+        id="registerDialog"
+        title="Register Employee"
+        class="sapUiPopupWithPadding"
+    >
+        <HBox>
+            <f:SimpleForm
+                id="personalDetailsForm"
+                title="Personal Details"
+                editable="true"
+            >
+                <f:content>
+                    <Label
+                        text="First Name"
+                        required="true"
+                    />
+                    <Input
+                        value="{newUser>/FIRST_NAME}"
+                        liveChange=".onCapitalizeFirstLetter"
+                    />
+                    <Label
+                        text="Last Name"
+                        required="true"
+                    />
+                    <Input
+                        value="{newUser>/LAST_NAME}"
+                        liveChange=".onCapitalizeFirstLetter"
+                    />
+                    <Label
+                        text="Email"
+                        required="true"
+                    />
+                    <Input
+                        type="Email"
+                        value="{newUser>/EMAIL}"
+                        liveChange="true"
+                    />
+                    <Label text="Mobile Number" required="true"/>
+                    <Input
+                        type="Tel"
+                        value="{newUser>/MOBILE}"
+                        maxLength="10"
+                        liveChange="true"
+                    />
+                </f:content>
+            </f:SimpleForm>
+
+            <!-- Employee Details Section -->
+            <f:SimpleForm
+                id="employeeDetailsForm"
+                title="Employee Details"
+                editable="true"
+            >
+                <f:content>
+                    <Label text="Employee Code" />
+                    <Input
+                        value="{newUser>/EMPLOYEE_CODE}"
+                        liveChange="true"
+                    />
+                    <Label text="Designation" />
+                    <Input
+                        value="{newUser>/DESIGNATION}"
+                        liveChange="true"
+                    />
+                    <Label text="Manager" />
+                    <Input
+                        value="{newUser>/MANAGER}"
+                        liveChange="true"
+                    />
+                    <Label text="Zone" />
+                    <Input
+                        value="{newUser>/ZONE}"
+                        liveChange="true"
+                    />
+                    <Label text="Division Identifier" />
+                    <Input
+                        value="{newUser>/DIVISION_IDENTIFIER}"
+                        liveChange="true"
+                    />
+                    <Label
+                        text="Role"
+                        required="true"
+                    />
+                    <Select
+                        selectedKey="{newUser>/ROLE_ID}"
+                        editable="false"
+                    >
+                        <items>
+                            <core:Item
+                                key="{newUser>/ROLE_ID}"
+                                text="{newUser>/RoleName}"
+                            />
+                            
+                        </items>
+                    </Select>
+
+                    <!-- <Label
+                        text="Sales group Id"
+                        required="true"
+                    />
+                    <Input
+                        type="Tel"
+                        value="{newSalesGroup>/SALES_GROUP}"
+                        maxLength="03"
+                        liveChange="true"
+                    /> -->
+                </f:content>
+            </f:SimpleForm>
+
+           <!-- RSM Mappings -->
+            <f:SimpleForm
+                id="rsmEmployeeMappingForm"
+                title="RSM Employee Sales Group"
+                editable="true"
+                visible="{sFormToggle>/rsmVisible}"   
+            > 
+             <!-- <Label
+                        text="TSI users"
+                    />
+                <Input type="Text" showValueHelp="true"></Input>
+
+             <Label
+                        text="ASM users"
+                    />
+                    <Input type="Text" showValueHelp="true"></Input>
+
+             <Label
+                        text="Depot"
+                    />
+                    <Input type="Text"></Input> -->
+                   <Label
+                        text="Sales group Id"
+                        required="true"
+                    />
+                    <Input
+                        type="Tel"
+                        value="{newUser>/SALES_GROUP}"
+                        maxLength="03"
+                        liveChange="true"
+                    />
+            </f:SimpleForm>
+
+            <!-- ASM Mapping -->
+            <f:SimpleForm
+                id="asmEmployeeMappingForm"
+                title="ASM Employee Sales Group"
+                editable="true"
+                visible="{sFormToggle>/asmVisible}" 
+            > 
+            <Label
+                        text="Sales group Id"
+                        required="true"
+                    />
+                    <Input
+                        type="Tel"
+                        value="{newUser>/SALES_GROUP}"
+                        maxLength="03"
+                        liveChange="true"
+                    />
+            
+             <!-- <Label
+                        text="TSI users"
+                    />
+                <Input type="Text" showValueHelp="true"></Input> -->
+            </f:SimpleForm>
+
+            <!-- TSI Mapping -->
+            <f:SimpleForm
+                id="TSIEmployeeMappingForm"
+                title="TSI Employee Sales Group"
+                editable="true"
+                visible="{sFormToggle>/tsiVisible}" 
+            > 
+            <Label
+                        text="Sales group Id"
+                        required="true"
+                    />
+                    <Input
+                        type="Tel"
+                        value="{newUser>/SALES_GROUP}"
+                        maxLength="03"
+                        liveChange="true"
+                    />
+            </f:SimpleForm>
+            
+        </HBox>
+
+        <!-- Dialog buttons -->
+        <beginButton>
+            <Button
+                text="Submit"
+                press="onSubmit"
+            />
+        </beginButton>
+        <endButton>
+            <Button
+                text="Cancel"
+                press="onCancel"
+            />
+        </endButton>
+    </Dialog>
+</core:FragmentDefinition>
